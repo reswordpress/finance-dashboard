@@ -13,4 +13,4 @@ A WordPress plugin to manage invoices & receipts (only for the Dutch market). Th
 
 ![Admin - receipts](https://raw.githubusercontent.com/houke/finance-dashboard/master/screenshots/admin-3.png)
 
-*This is built for my girlfriend's company. Feel free to give it a try, but use at your own risk*
+*This is built for my girlfriend's company and used the sprInvoice WordPress plugin as a starting point. Feel free to give it a try, but use at your own risk*
