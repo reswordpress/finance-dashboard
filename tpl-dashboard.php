@@ -8,7 +8,7 @@ Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
 GitHub Plugin URI: https://github.com/houke/finance-dashboard
-GitHub Branch: master
+
 */
 
 
@@ -917,7 +917,7 @@ function fd_get_custom_post_type_template($template) {
           $template = fd_custom_search_tpl('receipt');
      }
      if ( is_post_type_archive ( 'invoice' ) || is_post_type_archive ( 'receipt' ) ) {
-          $template = dirname( __FILE__ ) . '/tpl-dashboard.php';
+          $template = dirname( __FILE__ ) . '/tpl.dashboard.php';
      }
      return $template;
 }
