@@ -589,6 +589,11 @@ function fd_callback_003(){
         	$(this).parents('tr').find('[data-tax]').val( tax.replace(".", ",") );
         	$(this).val( price_in.replace(".", ",") );
         });
+
+        function vf(str) {
+            str = str.toString();
+            return parseFloat(str.replace(".", "").replace(",", "."));
+        }
     });
 
     </script>
