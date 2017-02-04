@@ -1,0 +1,33 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	size: 21cm 29.7cm;
+}
+@page{
+    size: auto;
+	margin: 0;
+	vertical-align: top;
+}
+
+.invoice-pay {
+  display: none;
+}
+
+#invoice {
+  background-repeat: no-repeat;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+	size: 21cm 29.7cm;
+	position: relative;
+	height: 100%;
+}
+
+.invoice-notes{
+	position: absolute;
+	left: 50px;
+	right: 50px;
+	bottom: 50px;
+}

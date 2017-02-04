@@ -1,0 +1,227 @@
+*, :after, :before {
+    box-sizing: border-box;
+}
+html, body{
+	background-color: #2b2e3b;
+}
+.menu li a.active{
+	text-decoration: underline;
+}
+
+.menu li ul{
+	position: absolute;
+	list-style: none;
+	z-index: 3;
+	display: none;
+	border-radius: 0 6px 6px 6px;
+}
+
+.menu li:hover ul{
+	display: block;
+	margin: 0;
+	overflow: hidden;
+	box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+}
+
+.menu li.has-submenu:hover a{
+	background-color: #fff;
+	color: #2b2e3b;
+	border-radius: 6px 6px 0 0;
+}
+
+.menu li ul li{
+	display: block;
+	white-space: nowrap;
+	background-color: #fff;
+}
+
+.menu li ul li a{
+	padding: 10px 25px;
+}
+
+.menu li ul li a{
+	color: #2b2e3b;
+}
+
+.menu li ul a{
+	padding: 12px 16px;
+	white-space: nowrap;
+}
+
+.dashboard{
+	padding-top: 170px;
+}
+
+.number{
+	position: relative;
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.number small{
+	font-size: 18px;
+	color: #999;
+	display: block;
+	line-height: 18px;
+}
+
+.callout.callout-table{
+	border: none;
+	border-radius: 6px;
+	background-color: #fff;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+	padding: 50px 0 0;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.table-overflow{
+	overflow-x: scroll;
+	width: 100%;
+}
+
+.callout.callout-table table tfoot td,
+.callout.callout-table table tfoot th,
+.callout.callout-table table thead td,
+.callout.callout-table table thead th,
+.callout.callout-table table tbody td{
+	padding: 15px;
+	text-align: left;
+}
+
+.callout.callout-table h5{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	padding: 15px;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+	background-color: #0091c7;
+}
+
+.callout.callout-table h5 label{
+	display: inline-block;
+	font-size: 12px;
+	border-radius: 3px;
+	background-color: #fff;
+	color: #0091c7;
+	padding: 2px 5px 0;
+	margin-left: 2px;
+	text-shadow: none;
+}
+
+.callout.callout-table h5.income{
+	background-color: #00c764;
+}
+
+.callout.callout-table h5.expense{
+	background-color: #d8454a;
+}
+
+.callout .table{
+	font-size: 14px;
+	border-collapse: collapse;
+	margin: 0;
+}
+
+.callout>.table th{
+	font-size: 12px;
+}
+
+.callout.callout-table{
+	background-color: #f8f8f8;
+}
+
+.table small{
+	font-weight: normal;
+}
+
+.table td{
+	position: relative;
+}
+
+.table td:hover .tooltip{
+	display: block;
+}
+
+.table-centered thead th{
+	text-align: center;
+}
+
+.has-tip{
+	font-weight: normal;
+}
+
+.menu-text{
+	padding-left: 0;
+	width: 100%;
+	display: block;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: "Times New Roman", serif;
+	font-weight: 900;
+}
+
+.menu-text span{
+	font-style: italic;
+	font-weight: 100;
+}
+
+.top-bar{
+	background-color: transparent;
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	padding: 20px 0 40px;
+}
+
+.top-bar ul{
+	text-align: center;
+	background-color: transparent;
+}
+
+.top-bar ul li{
+	display: inline-block;
+}
+
+.top-bar ul li a{
+	color: #fff;
+}
+
+.top-bar-right{
+	padding-top: 7px;
+}
+
+div.tooltip{
+	display: none;
+	margin: 0;
+	list-style: none;
+    left: 0;
+    width: 150px;
+	max-width: none;
+}
+
+div.tooltip:before{
+	left: 30px;
+}
+
+.risk{
+	font-style: italic;
+	font-size: 10px;
+	color: #ccc;
+	text-align: center;
+	display: block;
+	margin-bottom: 20px;
+}
+.risk a{
+	color: #ccc;
+	text-decoration: underline;
+}
