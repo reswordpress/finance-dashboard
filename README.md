@@ -18,4 +18,4 @@ By default, 2 templates are added; One for the single invoice and one for the si
 
 ![Template - invoice](https://raw.githubusercontent.com/houke/finance-dashboard/master/screenshots/invoice.png)
 
-*This is built for my girlfriend's company. Used the sprInvoice WordPress plugin as a starting point. Feel free to give it a try, but use at your own risk*
+*This is built for my girlfriend's company. Used the sprInvoice WordPress plugin as a starting point. Feel free to give it a try, but use at your own risk (always check if the numbers are correct, don't trust blindly on this plugin)*
