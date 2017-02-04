@@ -7,6 +7,7 @@ Version: 1.0
 Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
+GitHub Plugin URI: https://github.com/houke/finance-dashboard
 
 */
 
