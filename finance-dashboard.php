@@ -697,8 +697,8 @@ function fd_callback_005(){
         });
 
         $('input[name="fd_meta_receipt_tax"]').on('change', function(){
-        	if( $('[data-ex-out]').val() != '' ){
-        		$('[data-ex-out]').blur();
+        	if( $('[data-in-out]').val() != '' ){
+        		$('[data-in-out]').blur();
         	}else{
         		$('[data-in-out]').blur();
         	}
@@ -719,7 +719,7 @@ function fd_callback_005(){
 	    <tr>
 	        <?php $tk = 'fd_meta_receipt_price_ex'; ?>
 	        <td style='font-size: 13px;'><label>Betaald bedrag (excl. BTW)</label></td>
-	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" data-ex-out/></td>
+	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-ex-out/></td>
 	    </tr>
 	    <tr>
 	        <?php $tk = 'fd_meta_receipt_tax'; ?>
@@ -734,7 +734,7 @@ function fd_callback_005(){
 	    <tr>
 	        <?php $tk = 'fd_meta_receipt_price'; ?>
 	        <td style='font-size: 13px;'><label>Betaald bedrag (incl. BTW)</label></td>
-	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" data-in-out/></td>
+	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-in-out/></td>
 	    </tr>
 	    <tr>
 	        <?php $tk = 'fd_meta_receipt_file'; $tkv = get_post_meta($post->ID, $tk, true ); ?>

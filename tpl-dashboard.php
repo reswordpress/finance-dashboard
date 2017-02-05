@@ -287,7 +287,8 @@
 
             <?php if($currentQuarter === ''){
                 $receipt_opts = get_option('fd_options');
-                if( isset($receipt_opts['year']) && (array_search($currentYear, $receipt_opts['year'])) ) {
+                if( isset($receipt_opts['year']) && (array_search($currentYear, $receipt_opts['year']) >= 0) ) {
+                    $year_exists = array_search($currentYear, $receipt_opts['year']);
                     $starter = isset($receipt_opts['starter'][$year_exists]) ? $receipt_opts['starter'][$year_exists] : false;
                     $writeoff = isset($receipt_opts['writeoff'][$year_exists]) ? $receipt_opts['writeoff'][$year_exists] : 0;
                     $writeexx = isset($receipt_opts['writeoff_expl'][$year_exists]) ? $receipt_opts['writeoff_expl'][$year_exists] : '';
