@@ -1,12 +1,14 @@
 <?php
 /*
 Plugin Name: Financieel dashboard
+Plugin URI: https://github.com/houke/finance-dashboard
 Plugin Script: finance.php
 Description: Financieel dashboard
 Version: 1.0
 Author: Houke de Kwant
-Author URI: http://thearthunters.com
+Author URI: https://github.com/houke/
 License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/houke/finance-dashboard
 GitHub Branch: master
 */
