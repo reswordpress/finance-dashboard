@@ -18,15 +18,13 @@ class finaceDashboard
 {
     private $options;
 
-    public function __construct()
-    {
+    function __construct(){
         add_action( 'admin_menu', array( $this, 'fd_add_plugin_page' ) );
         add_action( 'admin_init', array( $this, 'fd_page_init' ) );
     }
 
 
-    public function fd_add_plugin_page()
-    {
+    function fd_add_plugin_page(){
         add_submenu_page(
 			'edit.php?post_type=invoice',
 			'Settings',
@@ -46,7 +44,7 @@ class finaceDashboard
 		);
     }
 
-    public function fd_create_admin_receipt_page(){
+    function fd_create_admin_receipt_page(){
     	$this->options = get_option( 'fd_options' );
         ?>
         <div class="wrap">
@@ -64,7 +62,7 @@ class finaceDashboard
         <?php
     }
 
-    public function fd_create_admin_invoice_page(){
+    function fd_create_admin_invoice_page(){
 
         $this->options = get_option( 'fd_options' );
         ?>
@@ -83,15 +81,14 @@ class finaceDashboard
         <?php
     }
 
-    public function fd_print_section_info(){
+    function fd_print_section_info(){
         print 'Voeg je bedrijfs- en persoonsgegevens toe.';
     }
-    public function fd_print_section_info2(){
+    function fd_print_section_info2(){
         print 'Voeg je uitgaven details toe.';
     }
 
-    public function fd_page_init()
-    {
+    function fd_page_init(){
         register_setting(
             'fd_option_group',
             'fd_options',
@@ -215,8 +212,7 @@ class finaceDashboard
         );
     }
 
-    public function sanitize( $input )
-    {
+    function sanitize( $input ){
         $new_input = array();
 
         $st = 'company';
@@ -286,7 +282,7 @@ class finaceDashboard
         return $new_input;
     }
 
-    public function CompanyCallback(){
+    function CompanyCallback(){
         $ft = 'company';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -294,7 +290,7 @@ class finaceDashboard
         );
     }
 
-    public function TagCallback(){
+    function TagCallback(){
         $ft = 'tag';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -302,7 +298,7 @@ class finaceDashboard
         );
     }
 
-    public function WebCallback(){
+    function WebCallback(){
         $ft = 'web';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -310,7 +306,7 @@ class finaceDashboard
         );
     }
 
-    public function ContactCallback(){
+    function ContactCallback(){
         $ft = 'contact';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -318,7 +314,7 @@ class finaceDashboard
         );
     }
 
-    public function EmailCallback(){
+    function EmailCallback(){
         $ft = 'email';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -326,7 +322,7 @@ class finaceDashboard
         );
     }
 
-    public function Address1Callback(){
+    function Address1Callback(){
         $ft = 'address1';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -334,7 +330,7 @@ class finaceDashboard
         );
     }
 
-    public function kvkCallback(){
+    function kvkCallback(){
         $ft = 'kvk';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -342,7 +338,7 @@ class finaceDashboard
         );
     }
 
-    public function btwCallback(){
+    function btwCallback(){
         $ft = 'btw';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -350,7 +346,7 @@ class finaceDashboard
         );
     }
 
-    public function bankCallback(){
+    function bankCallback(){
         $ft = 'bank';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -358,7 +354,7 @@ class finaceDashboard
         );
     }
 
-    public function Address2Callback(){
+    function Address2Callback(){
         $ft = 'address2';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -366,7 +362,7 @@ class finaceDashboard
         );
     }
 
-    public function PhoneCallback(){
+    function PhoneCallback(){
         $ft = 'phone';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -374,7 +370,7 @@ class finaceDashboard
         );
     }
 
-    public function TaxCallback(){
+    function TaxCallback(){
         $ft = 'tax';
         printf(
             '<input style="width:400px;" type="text" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" />',
@@ -382,7 +378,7 @@ class finaceDashboard
         );
     }
 
-    public function YearsCallback(){
+    function YearsCallback(){
     	$years = isset($this->options['years']) ? $this->options['years'] : 1;
 
     	for ($i = 0; $i < $years; $i++) {
@@ -1179,4 +1175,16 @@ function fd_remove_row_actions( $actions, $post ){
     	unset( $actions['inline hide-if-no-js'] );
     }
     return $actions;
+}
+
+function fd_print_pdf(){
+    if(isset($_GET['format']) && $_GET['format'] == 'pdf'){
+        require_once 'dompdf/autoload.inc.php';
+        use Dompdf\Dompdf;
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml('hello world');
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream();
+    }
 }
