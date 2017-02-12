@@ -11,7 +11,7 @@
 			</tfoot>
 			<tbody>
 				<tr>
-					<td>BTW</td>
+					<td>Netto btw</td>
 					<td>€<?php echo number_format( $tax_difference, 2, ',' , '.' ); ?></td>
 				</tr>
 				<tr>
@@ -29,7 +29,7 @@
 						?>
 
 						<div class="tooltip">
-							Aanvragen bij de laatste aangifte
+							Verrekenen bij de laatste aangifte
 						</div>
 					</td>
 				</tr>
