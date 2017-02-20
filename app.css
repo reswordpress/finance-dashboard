@@ -145,7 +145,7 @@ html, body{
 	position: relative;
 }
 
-.table td:hover .tooltip{
+.has-tip:hover + .tooltip{
 	display: block;
 }
 
@@ -155,6 +155,10 @@ html, body{
 
 .has-tip{
 	font-weight: normal;
+}
+
+strong .has-tip{
+	font-weight: bold;
 }
 
 .menu-text{
@@ -209,6 +213,22 @@ div.tooltip{
 	max-width: none;
 }
 
+div.tooltip.tip-large{
+	width: auto;
+	max-width: 500px;
+}
+
+div.tooltip.tip-top{
+	bottom: calc(100% + .6495rem);
+	top: auto;
+}
+div.tooltip.tip-top:before{
+	top: 100%;
+	bottom: auto;
+	border-bottom-width: 0;
+	border-top-width: 0.75rem;
+	border-color: #0a0a0a transparent transparent;
+}
 div.tooltip:before{
 	left: 30px;
 }
@@ -224,4 +244,14 @@ div.tooltip:before{
 .risk a{
 	color: #ccc;
 	text-decoration: underline;
+}
+.icon-link{
+	margin-right: 2px;
+}
+.icon-link:last-child{
+	margin-right: 0;
+}
+.icon-link svg{
+	width: 12px;
+	height: auto;
 }

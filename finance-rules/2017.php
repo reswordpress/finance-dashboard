@@ -4,70 +4,32 @@
 		<table class="table table-centered">
 			<thead>
 				<tr>
-					<th>Winst uit onderneming</th>
-					<th>Afschrijving</th>
-					<th>Zelfstandigenaftrek</th>
-					<th>Startersaftrek</th>
-					<th>MKB-Winstvrijstelling</th>
-					<th>Belastbare winst</th>
-					<th>ZVW</th>
-					<th>Algemene heffingskorting</th>
-					<th>Arbeidskorting</th>
+					<td colspan="2" style="font-weight: normal;"><em>Deze berekening houdt geen rekening met persoonlijke situaties, er wordt alleen gerekend met door de overheid vastgestelde bedragen. Gebruik de berekening alleen als basis voor je belasting aangifte.</em></td>
 				</tr>
 			</thead>
-			<tfoot>
-				<tr>
-					<td colspan="2"><small>Zelfstandigenaftrek</small></td>
-					<td colspan="7"><small>€7.280,00</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Startersaftrek</small></td>
-					<td colspan="7"><small>€2123, maximaal 3 keer in de eerste 5 jaar</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Kleinschaligheidsinvesteringsaftrek</small></td>
-					<td colspan="7"><small>28% van het investeringsbedrag als dit tussen € 2.301 t/m € 56.192 ligt</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>MKB-Winstvrijstelling</small></td>
-					<td colspan="7"><small>14% van de winst die overblijft na aftrek van Zelfstandigen, startersaftrek en kleinschaligheidsinvesteringsaftrek</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Oudedagsreserve</small></td>
-					<td colspan="7"><small>9,8% van de winst, met in 2015 een maximum van € 8.774</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Meewerkaftrek</small></td>
-					<td colspan="7"><small>1,25% van de winst, Als je fiscalepartner meer dan 525 uur gratis meewerkt</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Afschrijving</small></td>
-					<td colspan="7"><small>Economische levenstijd bepalen, dan aanschafwaarde - restwaarde/ die tijd is wat er af mag</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>ZvW	</small></td>
-					<td colspan="7"><small>5,4%, winst uit onderneming - zelfstandigenaftrek - startersaftrek - mkb winstvrijstelling = belastbare winst</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Algemene heffingskorting</small></td>
-					<td colspan="7"><small>€2254, tot een bedrag van €19.982</small></td>
-				</tr>
-				<tr>
-					<td colspan="2"><small>Arbeidskorting</small></td>
-					<td colspan="7"><small>1,772% x arbeidsinkomen, tot een bedrag van € 9.309 ( = winst voor de aftrekposten)</small></td>
-				</tr>
-			</tfoot>
 			<tbody>
 				<tr>
+					<td>Omzet (excl. btw)</td>
+					<td width="200"><?php echo '€ '.number_format( $income, 2, ',' , '.' ); ?></td>
+				</tr>
+				<tr>
+					<td>AF: kostprijs omzet</td>
+					<td><?php echo '€ '.number_format( -$expenses, 2, ',' , '.' ); ?></td>
+				</tr>
+				<tr>
+					<td>Bruto marge</td>
 					<td>
 						<?php
-							$arbeidsinkomen = $income-$expenses;
-							echo '€'.number_format( $arbeidsinkomen, 2, ',' , '.' );
+							$marge = $income-$expenses;
+							echo '€ '.number_format( $marge, 2, ',' , '.' );
 						?>
 					</td>
+				</tr>
+				<tr>
+					<td>AF: Afschrijving</td>
 					<td>
 						<span class="has-tip"><?php
-							echo '€'.number_format( $writeoff, 2, ',' , '.' );
+							echo '€ -'.number_format( $writeoff, 2, ',' , '.' );
 							?></span>
 						<?php if($writeexx != ''){ ?>
 							<div class="tooltip">
@@ -75,42 +37,187 @@
 							</div>
 						<?php } ?>
 					</td>
+				</tr>
+				<tr>
+					<td>Winst uit onderneming</td>
 					<td>
 						<?php
-							$zelfstandigenaftrek = 7280;
-							echo '€'.number_format( $zelfstandigenaftrek, 2, ',' , '.' );
+							$profit_temp = $marge-$writeoff;
+							echo '€ '.number_format( $profit_temp, 2, ',' , '.' );
 						?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						AF: Zelfstandigenaftrek (<a target="_blank" href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/verandering_inkomstenbelasting_vorige_jaren/veranderingen_2016/zelfstandigenaftrek_2016">Link</a>)
 					</td>
 					<td>
 						<?php
-							$starter = $starter ? 2123 : 0;
-							echo '€'.number_format( $starter, 2, ',' , '.' );
+							$zelfstandigenaftrek = -7280;
+							if($profit_temp + $zelfstandigenaftrek < 0){
+								echo '<span class="has-tip">€ '.number_format( $profit_temp, 2, ',' , '.' ).'</span><div class="tooltip">(€ '.number_format( -($zelfstandigenaftrek+$profit_temp), 2, ',' , '.' ).' te gebruiken in de komende 9 jaar)</div>';
+							}else{
+								echo '€ '.number_format( $zelfstandigenaftrek, 2, ',' , '.' );
+							}
 						?>
 					</td>
+				</tr>
+				<tr>
+					<td>AF: Startersaftrek (<a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/verandering_inkomstenbelasting_vorige_jaren/veranderingen_2016/zelfstandigenaftrek_2016">Link</a>)</td>
 					<td>
 						<?php
-							$MKB = $arbeidsinkomen - $writeoff - $zelfstandigenaftrek - $starter;
-							$MKB = ($MKB < 0) ? 0 : $MKB*0.14;
-							echo '€'.number_format( $MKB, 2, ',' , '.' );
+							$starter = $starter ? -2123 : 0;
+							if($starter != 0 && $profit_temp+$zelfstandigenaftrek < 2123){
+								echo '<span class="has-tip">€ '.number_format( $starter, 2, ',' , '.' ).'</span><div class="tooltip">(Je gebruikt dit jaar niet al je startersaftrek, misschien is het slimmer om het volgend jaar te gebruiken)</div>';
+							}else{
+								echo '€ '.number_format( $starter, 2, ',' , '.' );
+							}
 						?>
 					</td>
+				</tr>
+				<tr>
+					<td>Winst na ondernemersaftrek</td>
 					<td>
 						<?php
-							$belastbarewinst = $arbeidsinkomen - $writeoff - $zelfstandigenaftrek - $starter - $MKB;
+							$profit = $profit_temp+$zelfstandigenaftrek+$starter;
+							$profit = $profit<0 ? 0 : $profit;
+							echo '€ '.number_format( $profit, 2, ',' , '.' );
+						?>
+					</td>
+				</tr>
+				<tr>
+					<td>AF: MKB-winstvrijstelling (<a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/verandering_inkomstenbelasting_vorige_jaren/veranderingen_2016/mkb_winstvrijstelling">Link</a>)</td>
+					<td>
+						<?php
+							$MKB = ($profit < 0) ? 0 : $profit*-0.14;
+							echo '€ '.number_format( $MKB, 2, ',' , '.' );
+						?>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Belastbare winst</strong></td>
+					<td>
+						<strong>
+						<?php
+							$belastbarewinst = $profit + $MKB;
 							$belastbarewinst = ($belastbarewinst < 0) ? 0 : $belastbarewinst;
-							echo '€'.number_format( $belastbarewinst, 2, ',' , '.' );
+							echo '€ '.number_format( $belastbarewinst, 2, ',' , '.' );
+						?>
+						</strong>
+					</td>
+				</tr>
+				<tr class="break">
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Inkomstenbelasting</td>
+					<td>
+						<?php
+							if($belastbarewinst <= 19982){
+								$tax_income = $belastbarewinst*0.3655;
+							}
+							else if($belastbarewinst <= 33791){
+								$tax_income = (($belastbarewinst-19982)*0.408) + (19982*0.3655);
+							}
+							else if($belastbarewinst <=  67072){
+								$tax_income = (($belastbarewinst-19982)*0.408) + (19982*0.3655);
+							}else{
+								$tax_income = (($belastbarewinst-67072)*0.52) + (47.090*0.408) + (19982*0.3655);
+							}
+							echo '€ '.number_format( $tax_income, 2, ',' , '.' );
 						?>
 					</td>
-					<td>
-						<?php echo '€'.number_format( ($belastbarewinst*0.054), 2, ',' , '.' ); ?>
+				</tr>
+				<tr>
+					<td>AF:
+						<?php
+							$heffingskorting = 	($tax_income > 67068) ? 0 :
+												($tax_income >19982) ? -(2254-(0.04787*($tax_income-19982))) :
+												-2254;
+							if($tax_income + $heffingskorting > 0) {
+						?>
+							Algemene heffingskorting
+						<?php }else{ ?>
+							<span class="has-tip">Algemene heffingskorting</span>
+							<div class="tooltip tip-top tip-large">
+								Dit bedrag is nooit hoger dan de te betalen inkomstenbelasting. Als de te betalen inkomstenbelasting lager is dan de heffingskorting, kan deze onder bepaalde voorwaarden worden verrekend als u een fiscale partner hebt. In dit geval gaat het om een restered bedrag van <?php echo '€'.number_format( -($heffingskorting+$tax_income), 2, ',' , '.' ); ?>.
+							</div>
+						<?php } ?>
 					</td>
 					<td>
 						<?php
-							$heffingskorting = 2254;
-							echo '€'.number_format( $heffingskorting, 2, ',' , '.' );
+							if($tax_income + $heffingskorting > 0){
+								echo '€ '.number_format( $heffingskorting, 2, ',' , '.' );
+							}else{
+								$heffingskorting = -$tax_income;
+								echo '€ '.number_format( $tax_income, 2, ',' , '.' );
+							}
 						?>
 					</td>
-					<td><?php echo '€'.number_format( ($arbeidsinkomen*0.01772), 2, ',' , '.' ); ?></td>
+				</tr>
+				<tr>
+					<td>
+						AF: <span class="has-tip">Arbeidskorting</span>
+						<div class="tooltip tip-top tip-large">Let op, er wordt hierbij gekeken naar de <em>bruto marge</em>.</div>
+					</td>
+					<td>
+						<?php
+							if($tax_income + $heffingskorting > 0){
+								if($marge > 121972){
+										$arbeidskorting = 0;
+								}
+								else if($marge > 32444){
+									$arbeidskorting = -(3223 - (0.036*($marge-32444)));
+								}
+								else if($marge > 20108){
+									$arbeidskorting = -3223;
+								}
+								else if($marge > 9309){
+									$arbeidskorting = -(165+(0.28317*($marge-9309)));
+								}
+								else{
+									$arbeidskorting = -(0.01772*$marge);
+								}
+							}else{
+								$arbeidskorting = 0;
+							}
+							echo '€ '.number_format( $arbeidskorting, 2, ',' , '.' );
+						?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Totaal af te dragen inkomstenbelasting</strong>
+					</td>
+					<td>
+						<strong>
+							<?php
+								$taxpayment = ($tax_income+$heffingskorting+$arbeidskorting);
+								$taxpayment = $taxpayment < 0 ? 0 : $taxpayment;
+								echo '€ '.number_format( $taxpayment, 2, ',' , '.' );
+							?>
+						</strong>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>Totaal af te dragen
+							<?php if($belastbarewinst > 0){ ?>
+								<span class="has-tip">ZVW (Zorgverzekeringswet)</span>
+								<div class="tooltip tip-top tip-large">
+									Iedereen met een belastbaar inkomen is verplicht een inkomensafhankelijke bijdrage Zvw te betalen.
+								</div>
+							<?php }else{ ?>
+								ZVW (Zorgverzekeringswet)
+							<?php } ?>
+						</strong>
+					</td>
+					<td>
+						<strong><?php
+							$zvw = ($belastbarewinst*0.054);
+							echo '€ '.number_format( $zvw, 2, ',' , '.' );
+						?></strong>
+					</td>
 				</tr>
 			</tbody>
 		</table>

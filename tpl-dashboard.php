@@ -288,7 +288,7 @@
             <?php if($currentQuarter === ''){
                 $receipt_opts = get_option('fd_options');
                 if( isset($receipt_opts['year']) && (array_search($currentYear, $receipt_opts['year']) >= 0) ) {
-                    $year_exists = array_search($currentYear, $receipt_opts['year']);
+                	$year_exists = array_search($currentYear, $receipt_opts['year']);
                     $starter = isset($receipt_opts['starter'][$year_exists]) ? $receipt_opts['starter'][$year_exists] : false;
                     $writeoff = isset($receipt_opts['writeoff'][$year_exists]) ? $receipt_opts['writeoff'][$year_exists] : 0;
                     $writeexx = isset($receipt_opts['writeoff_expl'][$year_exists]) ? $receipt_opts['writeoff_expl'][$year_exists] : '';
@@ -312,11 +312,12 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="20%">Factuurnummer</th>
-                                        <th width="20%">Factuurdatum</th>
-                                        <th width="20%">Klantnaam</th>
-                                        <th width="20%">Bedrag</th>
-                                        <th width="20%">Status</th>
+                                        <th width="19%">Factuurnummer</th>
+                                        <th width="19%">Factuurdatum</th>
+                                        <th width="19%">Klantnaam</th>
+                                        <th width="19%">Bedrag</th>
+                                        <th width="19%">Status</th>
+                                        <th width="5%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -330,6 +331,14 @@
                                         <td><?php echo fd_set_invoice_column_content( 'invoice_client', $post->ID ); ?></td>
                                         <td><?php echo fd_set_invoice_column_content( 'invoice_amount', $post->ID ); ?></td>
                                         <td><?php echo fd_set_invoice_column_content( 'invoice_state', $post->ID ); ?></td>
+                                        <td>
+                                        	<a target="_blank" class="icon-link" href="<?php echo get_edit_post_link( $post->ID ); ?>">
+                                        		<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z"/></svg>
+                                        	</a>
+                                        	<a target="_blank" class="icon-link" href="<?php echo get_permalink( $post->ID ); ?>">
+												<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z"/></svg>
+                                        	</a>
+                                        </td>
                                     </tr>
                                 <?php
                                         }
@@ -353,11 +362,12 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th width="20%">Titel</th>
-                                        <th width="20%">Factuurdatum</th>
-                                        <th width="20%">Bedrag</th>
-                                        <th width="20%">BTW</th>
-                                        <th width="20%">Bijlage</th>
+                                        <th width="19%">Titel</th>
+                                        <th width="19%">Factuurdatum</th>
+                                        <th width="19%">Bedrag</th>
+                                        <th width="19%">BTW</th>
+                                        <th width="19%">Bijlage</th>
+                                        <th width="5%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -370,6 +380,14 @@
                                             <td><?php echo fd_set_receipt_column_content( 'receipt_price', $post->ID ); ?></td>
                                             <td><?php echo fd_set_receipt_column_content( 'receipt_tax', $post->ID ); ?></td>
                                             <td><?php echo fd_set_receipt_column_content( 'receipt_file', $post->ID ); ?></td>
+                                            <td>
+	                                            <a target="_blank" class="icon-link" href="<?php echo get_edit_post_link( $post->ID ); ?>">
+	                                        		<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z"/></svg>
+	                                        	</a>
+	                                        	<a target="_blank" class="icon-link" href="<?php echo get_permalink( $post->ID ); ?>">
+													<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5t-316.5 131.5-316.5-131.5-131.5-316.5q0-121 61-225-229 117-381 353 133 205 333.5 326.5t434.5 121.5 434.5-121.5 333.5-326.5zm-720-384q0-20-14-34t-34-14q-125 0-214.5 89.5t-89.5 214.5q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5t-499.5 138.5-499.5-139-376.5-368q-20-35-20-69t20-69q140-229 376.5-368t499.5-139 499.5 139 376.5 368q20 35 20 69z"/></svg>
+	                                        	</a>
+	                                        </td>
                                         </tr>
                                 <?php
                                         }

@@ -11,8 +11,8 @@
 			</tfoot>
 			<tbody>
 				<tr>
-					<td>Netto btw</td>
-					<td>€<?php echo number_format( $tax_difference, 2, ',' , '.' ); ?></td>
+					<td>BTW</td>
+					<td width="200">€<?php echo number_format( $tax_difference, 2, ',' , '.' ); ?></td>
 				</tr>
 				<tr>
 					<td>Vermindering <small>(=<1345 of >1346 EN =< 1883 of > 1884)</small></td>
@@ -29,7 +29,7 @@
 						?>
 
 						<div class="tooltip">
-							Verrekenen bij de laatste aangifte
+							Aanvragen bij de aangifte over Q4 van dit jaar
 						</div>
 					</td>
 				</tr>
