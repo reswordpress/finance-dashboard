@@ -1007,6 +1007,7 @@ function fd_set_invoice_column_content( $column_name, $post_id ) {
 					echo '<br/><span style="color:#f00;"> (Betaaldatum verlopen)</span><br/><a href="'.add_query_arg( 'reminder', 'true', get_permalink($post_id) ).'" target="_blank">Maak een reminder</a>';
 				}
 			}
+			echo '<br/><a href="'.get_edit_post_link($post_id).'" target="_blank" data-mark="'.$post_id.'">Markeer als betaald</a>';
 		}
     }
     if ( $column_name == 'invoice_date' ) {
@@ -1177,4 +1178,54 @@ function fd_remove_row_actions( $actions, $post ){
     	unset( $actions['inline hide-if-no-js'] );
     }
     return $actions;
+}
+
+function fd_add_admin_scripts() {
+    global $post;
+    if((isset($_GET['post_type']) && $_GET['post_type'] == 'invoice')){
+    ?>
+	    <script type="text/javascript">
+		    jQuery(document).ready(function($) {
+		       	jQuery('[data-mark]').on('click', function(e){
+		       		e.preventDefault();
+		       		var col = jQuery(this).parent();
+		       		col.html('Betaalstatus aanpassen...');
+		       		jQuery.ajax({
+						url: ajaxurl,
+			         	type: 'post',
+			         	dataType: 'JSON',
+			         	timeout: 30000,
+			         	data: {
+			         		action: 'fd_update_post_status',
+			         		id: jQuery(this).data('mark')
+			         	},
+			         	success: function(response) {
+			         		col.html('Betaald');
+			         	},
+			         	error: function (jqXHR, exception) {
+					        col.html('<span style="color:#f00;">Betaalstatus aanpassen niet gelukt. </span>');
+					    },
+			        });
+		       	});
+		    });
+		</script>
+	<?php
+	}
+}
+add_action( 'admin_head-edit.php', 'fd_add_admin_scripts', 10, 1 );
+
+add_action( 'wp_ajax_fd_update_post_status', 'fd_update_post_status' );
+function fd_update_post_status() {
+	if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		$post_id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : "";
+
+		if( get_post_type( $post_id ) == 'invoice' ) {
+			update_post_meta($post_id, 'fd_meta_invoice_status', 'betaald');
+			echo json_encode( 'true' );
+		}else{
+			echo json_encode( 'false' );
+		}
+
+	}
+    wp_die();
 }
