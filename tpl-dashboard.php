@@ -286,7 +286,7 @@
             </div>
 
             <?php if($currentQuarter === ''){
-                $receipt_opts = get_option('fd_options');
+                $receipt_opts = get_option('fd_options_receipt');
                 if( isset($receipt_opts['year']) && (array_search($currentYear, $receipt_opts['year']) >= 0) ) {
                 	$year_exists = array_search($currentYear, $receipt_opts['year']);
                     $starter = isset($receipt_opts['starter'][$year_exists]) ? $receipt_opts['starter'][$year_exists] : false;

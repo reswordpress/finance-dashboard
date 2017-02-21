@@ -3,7 +3,7 @@
 Plugin Name: Financieel dashboard
 Plugin Script: finance.php
 Description: Financieel dashboard
-Version: 1.0
+Version: 1.1
 Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
@@ -45,7 +45,7 @@ class finaceDashboard
     }
 
     public function fd_create_admin_receipt_page(){
-    	$this->options = get_option( 'fd_options' );
+    	$this->options = get_option( 'fd_options_receipt' );
         ?>
         <div class="wrap">
             <?php screen_icon(); ?>
@@ -193,7 +193,7 @@ class finaceDashboard
 
         register_setting(
             'fd_option_group_receipt',
-            'fd_options',
+            'fd_options_receipt',
             array( $this, 'sanitize' )
         );
 
@@ -386,28 +386,28 @@ class finaceDashboard
     	for ($i = 0; $i < $years; $i++) {
 	        $ft = 'year';
 	        printf(
-	            '<label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Jaar</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options[' . $ft . ']['.$i.']" value="%s" />',
+	            '<label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Jaar</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" />',
 	            isset( $this->options[$ft][$i] ) ? esc_attr( $this->options[$ft][$i]) : ''
 	        );
 	        $ft = 'starter';
 	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Startersaftrek</label><input type="checkbox" id="' . $ft . '_'.$i.'" name="fd_options[' . $ft . ']['.$i.']" %s />',
+	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Startersaftrek</label><input type="checkbox" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" %s />',
 	            isset( $this->options[$ft][$i] ) ? 'checked' : 'false'
 	        );
 	        $ft = 'writeoff';
 	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Afschrijving</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options[' . $ft . ']['.$i.']" value="%s" placeholder="Volledige bedrag"/>',
+	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Afschrijving</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" placeholder="Volledige bedrag"/>',
 	            isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
 	        );
 	        $ft = 'writeoff_expl';
 	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;vertical-align:top;" for="' . $ft . '_'.$i.'">Toelichting</label><textarea style="width:250px;height:100px;" id="' . $ft . '_'.$i.'" name="fd_options[' . $ft . ']['.$i.']" placeholder="Elk bedrag/toelichting op een nieuwe regel">%s</textarea><br/><br/>',
+	        	'<br/><label style="width: 110px; display: inline-block;vertical-align:top;" for="' . $ft . '_'.$i.'">Toelichting</label><textarea style="width:250px;height:100px;" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" placeholder="Elk bedrag/toelichting op een nieuwe regel">%s</textarea><br/><br/>',
 	            isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
 	        );
 	    }
 	    $ft = 'years';
 	    printf(
-	    	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Aantal jaar</label><input style="width:260px;" type="number" id="' . $ft . '" name="fd_options[' . $ft . ']" value="%s" /><br/><small>Wil je een extra jaar toevoegen, verhoog het nummer met 1,<br/> sla op en een nieuwe sectie verschijnt</small>',
+	    	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Aantal jaar</label><input style="width:260px;" type="number" id="' . $ft . '" name="fd_options_receipt[' . $ft . ']" value="%s" /><br/><small>Wil je een extra jaar toevoegen, verhoog het nummer met 1,<br/> sla op en een nieuwe sectie verschijnt</small>',
 	        isset( $this->options[$ft] ) ? esc_attr( $this->options[$ft]) : 1
 	    );
     }
