@@ -85,6 +85,11 @@
     if($currentQuarter != ''){
         $cq = $currentQuarter-1;
         $args['meta_query'] = array(
+        	array(
+        		'key' => 'fd_meta_receipt_tax',
+        		'value' => 0,
+        		'compare' => '>='
+        	),
             array(
                 'key' => 'fd_meta_receipt_date',
                 'value' => $currentYear.'-'.$startMonths[$cq].'-01',
@@ -100,6 +105,11 @@
         );
     }else{
         $args['meta_query'] = array(
+        	array(
+        		'key' => 'fd_meta_receipt_tax',
+        		'value' => 0,
+        		'compare' => '>='
+        	),
             array(
                 'key' => 'fd_meta_receipt_date',
                 'value' => $currentYear.'-01-01',
