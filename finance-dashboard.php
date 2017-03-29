@@ -3,7 +3,7 @@
 Plugin Name: Financieel dashboard
 Plugin Script: finance.php
 Description: Financieel dashboard
-Version: 1.1
+Version: 1.2
 Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
@@ -26,26 +26,26 @@ class finaceDashboard
     public function fd_add_plugin_page()
     {
         add_submenu_page(
-			'edit.php?post_type=invoice',
-			'Settings',
-			'Settings',
-			'manage_options',
-			'fd-invoice-admin',
-			array( $this, 'fd_create_admin_invoice_page' )
-		);
+            'edit.php?post_type=invoice',
+            'Settings',
+            'Settings',
+            'manage_options',
+            'fd-invoice-admin',
+            array( $this, 'fd_create_admin_invoice_page' )
+        );
 
-		add_submenu_page(
-			'edit.php?post_type=receipt',
-			'Settings',
-			'Settings',
-			'manage_options',
-			'fd-receipt-admin',
-			array( $this, 'fd_create_admin_receipt_page' )
-		);
+        add_submenu_page(
+            'edit.php?post_type=receipt',
+            'Settings',
+            'Settings',
+            'manage_options',
+            'fd-receipt-admin',
+            array( $this, 'fd_create_admin_receipt_page' )
+        );
     }
 
     public function fd_create_admin_receipt_page(){
-    	$this->options = get_option( 'fd_options_receipt' );
+        $this->options = get_option( 'fd_options_receipt' );
         ?>
         <div class="wrap">
             <?php screen_icon(); ?>
@@ -381,35 +381,35 @@ class finaceDashboard
     }
 
     public function YearsCallback(){
-    	$years = isset($this->options['years']) ? $this->options['years'] : 1;
+        $years = isset($this->options['years']) ? $this->options['years'] : 1;
 
-    	for ($i = 0; $i < $years; $i++) {
-	        $ft = 'year';
-	        printf(
-	            '<label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Jaar</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" />',
-	            isset( $this->options[$ft][$i] ) ? esc_attr( $this->options[$ft][$i]) : ''
-	        );
-	        $ft = 'starter';
-	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Startersaftrek</label><input type="checkbox" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" %s />',
-	            isset( $this->options[$ft][$i] ) ? 'checked' : 'false'
-	        );
-	        $ft = 'writeoff';
-	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Afschrijving</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" placeholder="Volledige bedrag"/>',
-	            isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
-	        );
-	        $ft = 'writeoff_expl';
-	        printf(
-	        	'<br/><label style="width: 110px; display: inline-block;vertical-align:top;" for="' . $ft . '_'.$i.'">Toelichting</label><textarea style="width:250px;height:100px;" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" placeholder="Elk bedrag/toelichting op een nieuwe regel">%s</textarea><br/><br/>',
-	            isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
-	        );
-	    }
-	    $ft = 'years';
-	    printf(
-	    	'<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Aantal jaar</label><input style="width:260px;" type="number" id="' . $ft . '" name="fd_options_receipt[' . $ft . ']" value="%s" /><br/><small>Wil je een extra jaar toevoegen, verhoog het nummer met 1,<br/> sla op en een nieuwe sectie verschijnt</small>',
-	        isset( $this->options[$ft] ) ? esc_attr( $this->options[$ft]) : 1
-	    );
+        for ($i = 0; $i < $years; $i++) {
+            $ft = 'year';
+            printf(
+                '<label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Jaar</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" />',
+                isset( $this->options[$ft][$i] ) ? esc_attr( $this->options[$ft][$i]) : ''
+            );
+            $ft = 'starter';
+            printf(
+                '<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Startersaftrek</label><input type="checkbox" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" %s />',
+                isset( $this->options[$ft][$i] ) ? 'checked' : 'false'
+            );
+            $ft = 'writeoff';
+            printf(
+                '<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Afschrijving</label><input style="width:150px;" type="text" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" value="%s" placeholder="Volledige bedrag"/>',
+                isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
+            );
+            $ft = 'writeoff_expl';
+            printf(
+                '<br/><label style="width: 110px; display: inline-block;vertical-align:top;" for="' . $ft . '_'.$i.'">Toelichting</label><textarea style="width:250px;height:100px;" id="' . $ft . '_'.$i.'" name="fd_options_receipt[' . $ft . ']['.$i.']" placeholder="Elk bedrag/toelichting op een nieuwe regel">%s</textarea><br/><br/>',
+                isset( $this->options[$ft][$i] ) ? $this->options[$ft][$i] : ''
+            );
+        }
+        $ft = 'years';
+        printf(
+            '<br/><label style="width: 110px; display: inline-block;" for="' . $ft . '_'.$i.'">Aantal jaar</label><input style="width:260px;" type="number" id="' . $ft . '" name="fd_options_receipt[' . $ft . ']" value="%s" /><br/><small>Wil je een extra jaar toevoegen, verhoog het nummer met 1,<br/> sla op en een nieuwe sectie verschijnt</small>',
+            isset( $this->options[$ft] ) ? esc_attr( $this->options[$ft]) : 1
+        );
     }
 
 }
@@ -421,91 +421,94 @@ if(is_admin()){
 
 // invoice post type
 function fd_invoice_post_type() {
-    $args = array(
-	    'public' => true,
-	    'capability_type' => 'post',
-	    'query_var' => true,
-	    'has_archive' => true,
-	    'menu_icon' => 'dashicons-money',
-	    'supports' => array(
-	        'title',
-	        'editor' => true,
-	        'excerpt' => false,
-	        'trackbacks' => false,
-	        'custom-fields' => true,
-	        'comments' => false,
-	        'revisions' => false,
-	        'thumbnail' => false,
-	        'author' => false,
-	        'page-attributes' => false,
-	    ),
-	    'rewrite' => array('slug'=>'inkomsten'),
-	    'labels' => array(
-	        'name' => 'Inkomsten',
-	        'singular_name' => 'Factuur',
-	        'plural_name' => 'Facturen',
-	        'all_items'             =>'Alle inkomsten',
-			'add_new_item'          =>'Nieuwe factuur toevoegen',
-			'add_new'               =>'Nieuwe factuur toevoegen',
-			'new_item'              =>'Nieuwe factuur',
-			'edit_item'             =>'Factuur bewerken',
-	    )
-	);
-    register_post_type( 'invoice', $args );
+    $invoiceargs = array(
+        'public' => true,
+        'capability_type' => 'post',
+        'query_var' => true,
+        'has_archive' => true,
+        'menu_icon' => 'dashicons-money',
+        'supports' => array(
+            'title',
+            'editor' => true,
+            'excerpt' => false,
+            'trackbacks' => false,
+            'custom-fields' => true,
+            'comments' => false,
+            'revisions' => false,
+            'thumbnail' => false,
+            'author' => false,
+            'page-attributes' => false,
+        ),
+        'rewrite' => array('slug'=>'inkomsten'),
+        'labels' => array(
+            'name' => 'Inkomsten',
+            'singular_name' => 'Factuur',
+            'plural_name' => 'Facturen',
+            'all_items'             =>'Alle inkomsten',
+            'add_new_item'          =>'Nieuwe factuur toevoegen',
+            'add_new'               =>'Nieuwe factuur toevoegen',
+            'new_item'              =>'Nieuwe factuur',
+            'edit_item'             =>'Factuur bewerken',
+        )
+    );
+    register_post_type( 'invoice', $invoiceargs );
 
 
-    $args = array(
-	    'public' => true,
-	    'capability_type' => 'post',
-	    'query_var' => true,
-	    'menu_icon' => 'dashicons-money',
-	    'supports' => array( 'title' ),
-	    'has_archive' => true,
-	    'rewrite' => array('slug'=>'uitgaven'),
-	    'labels' => array(
-	        'name' => 'Uitgaven',
-	        'singular_name' => 'Factuur',
-	        'plural_name' => 'Facturen',
-	        'all_items'             =>'Alle uitgaven',
-			'add_new_item'          =>'Nieuwe uitgave toevoegen',
-			'add_new'               =>'Nieuwe uitgave toevoegen',
-			'new_item'              =>'Nieuwe uitgave',
-			'edit_item'             =>'Uitgave bewerken',
-	    )
-	);
-    register_post_type( 'receipt', $args );
+    $receiptargs = array(
+        'public' => true,
+        'capability_type' => 'post',
+        'query_var' => true,
+        'menu_icon' => 'dashicons-money',
+        'supports' => array( 'title' ),
+        'has_archive' => true,
+        'rewrite' => array('slug'=>'uitgaven'),
+        'labels' => array(
+            'name' => 'Uitgaven',
+            'singular_name' => 'Factuur',
+            'plural_name' => 'Facturen',
+            'all_items'             =>'Alle uitgaven',
+            'add_new_item'          =>'Nieuwe uitgave toevoegen',
+            'add_new'               =>'Nieuwe uitgave toevoegen',
+            'new_item'              =>'Nieuwe uitgave',
+            'edit_item'             =>'Uitgave bewerken',
+        )
+    );
+    register_post_type( 'receipt', $receiptargs );
 
-    $args = array(
-	    'public' => true,
-		'publicly_queryable'    => false,
-	    'capability_type' => 'post',
-	    'query_var' => true,
-	    'has_archive' => false,
-	    'menu_icon' => 'dashicons-groups',
-	    'supports' => array(
-	        'title',
-	        'editor' => true,
-	        'excerpt' => false,
-	        'trackbacks' => false,
-	        'custom-fields' => true,
-	        'comments' => false,
-	        'revisions' => false,
-	        'thumbnail' => false,
-	        'author' => false,
-	        'page-attributes' => false,
-	    ),
-	    'labels' => array(
-	        'name' => 'Klanten',
-	        'singular_name' => 'Klant',
-	        'plural_name' => 'Klanten',
-	        'all_items'             =>'Alle klanten',
-			'add_new_item'          =>'Nieuwe klant toevoegen',
-			'add_new'               =>'Nieuwe klant toevoegen',
-			'new_item'              =>'Nieuwe klant',
-			'edit_item'             =>'Klant bewerken',
-	    )
-	);
-    register_post_type( 'client', $args );
+    $clientargs = array(
+        'public' => false,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'query_var' => false,
+        'has_archive' => false,
+        'exclude_from_search' => true,
+        'menu_icon' => 'dashicons-groups',
+        'publicly_queryable'  => false,
+        'query_var'           => false,
+        'supports' => array(
+            'title',
+            'editor' => true,
+            'excerpt' => false,
+            'trackbacks' => false,
+            'custom-fields' => true,
+            'comments' => false,
+            'revisions' => false,
+            'thumbnail' => false,
+            'author' => false,
+            'page-attributes' => false,
+        ),
+        'labels' => array(
+            'name' => 'Klanten',
+            'singular_name' => 'Klant',
+            'plural_name' => 'Klanten',
+            'all_items'             =>'Alle klanten',
+            'add_new_item'          =>'Nieuwe klant toevoegen',
+            'add_new'               =>'Nieuwe klant toevoegen',
+            'new_item'              =>'Nieuwe klant',
+            'edit_item'             =>'Klant bewerken',
+        )
+    );
+    register_post_type( 'client', $clientargs );
 
 }
 add_action( 'init', 'fd_invoice_post_type' );
@@ -548,52 +551,62 @@ function fd_callback_001(){
 
 <?php }
 function fd_callback_002(){
-    global $post;?>
+    global $post;
+    $posttype = get_post_type( $post );
+?>
     <table width='100%'>
+    <?php if( $posttype != 'client' ) { ?>
     <tr>
-    	<td style='font-size: 13px; width:200px;'><label>Zoeken:</label></td>
-    	<td>
-    		<div style="position: relative;">
-    			<input type="search" style="width: 60%;" data-search-client/><a href="<?php echo admin_url( 'edit.php?post_type=client' ); ?>" style="margin-left: 10px; font-size: 12px;" target="_blank">Klanten beheren</a>
-    			<ul class="data-search-client-list" style="display: none; margin: 0; background: #FFF; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: absolute; left: 0;
-    			top: 100%; width: 60%;"></ul>
-    		</div>
-    	</td>
+        <td style='font-size: 13px; width:200px;'><label>Zoeken:</label></td>
+        <td>
+            <div style="position: relative;">
+                <input type="search" style="width: 60%;" data-search-client/><a href="<?php echo admin_url( 'edit.php?post_type=client' ); ?>" style="margin-left: 10px; font-size: 12px;" target="_blank">Klanten beheren</a>
+                <ul class="data-search-client-list" style="display: none; margin: 0; background: #FFF; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: absolute; left: 0;
+                top: 100%; width: 60%;"></ul>
+            </div>
+        </td>
     </tr>
+    <?php } ?>
     <tr>
         <?php $tk = 'fd_meta_name'; ?>
         <td style='font-size: 13px; width:200px;'><label>Naam</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
 
     <tr>
         <?php $tk = 'fd_meta_company'; ?>
         <td style='font-size: 13px;'><label>Bedrijfsnaam</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
 
     <tr>
         <?php $tk = 'fd_meta_email'; ?>
         <td style='font-size: 13px;'><label>Email</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
 
     <tr>
         <?php $tk = 'fd_meta_phone'; ?>
         <td style='font-size: 13px;'><label>Telefoonnummer</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
 
     <tr>
         <?php $tk = 'fd_meta_address_1'; ?>
         <td style='font-size: 13px;'><label>Straat + huisnummer</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
 
     <tr>
         <?php $tk = 'fd_meta_address_2'; ?>
         <td style='font-size: 13px;'><label>Postcode + woonplaats</label></td>
-        <td><input style='width: 100%;' readonly type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        <td><input style='width: 100%;'
+    <?php if( $posttype != 'client' ) { echo 'readonly'; } ?> type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
     </tr>
     </table>
 
@@ -606,7 +619,7 @@ function fd_callback_003(){
     ?>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
-    	var xhr = '';
+        var xhr = '';
         $('#new-row').click(function(){
             var theRow = $('.default-row').clone(true);
             theRow.removeClass('default-row');
@@ -621,27 +634,27 @@ function fd_callback_003(){
         });
 
         $('[data-ex]').on('blur', function(){
-        	var price_ex = vf( jQuery(this).val() );
-        	var taxnum = 21;
-        	var price_in = ((price_ex/100)*(100+taxnum)).toFixed(2);
-        	var tax = ((price_ex/100)*taxnum).toFixed(2);
-        	price_ex = price_ex.toFixed(2).toString();
+            var price_ex = vf( jQuery(this).val() );
+            var taxnum = 21;
+            var price_in = ((price_ex/100)*(100+taxnum)).toFixed(2);
+            var tax = ((price_ex/100)*taxnum).toFixed(2);
+            price_ex = price_ex.toFixed(2).toString();
 
-        	$(this).parents('tr').find('[data-in]').val( price_in.replace(".", ",") );
-        	$(this).parents('tr').find('[data-tax]').val( tax.replace(".", ",") );
-        	$(this).val( price_ex.replace(".", ",") ) ;
+            $(this).parents('tr').find('[data-in]').val( price_in.replace(".", ",") );
+            $(this).parents('tr').find('[data-tax]').val( tax.replace(".", ",") );
+            $(this).val( price_ex.replace(".", ",") ) ;
         });
 
         $('[data-in]').on('blur', function(){
-        	var price_in = vf(jQuery(this).val());
-        	var taxnum = 21;
-        	var price_ex = ((price_in/(100+taxnum))*100).toFixed(2);
-        	var tax = ((price_in/(100+taxnum))*taxnum).toFixed(2);
-        	price_in = price_in.toFixed(2).toString();
+            var price_in = vf(jQuery(this).val());
+            var taxnum = 21;
+            var price_ex = ((price_in/(100+taxnum))*100).toFixed(2);
+            var tax = ((price_in/(100+taxnum))*taxnum).toFixed(2);
+            price_in = price_in.toFixed(2).toString();
 
-        	$(this).parents('tr').find('[data-ex]').val( price_ex.replace(".", ",") );
-        	$(this).parents('tr').find('[data-tax]').val( tax.replace(".", ",") );
-        	$(this).val( price_in.replace(".", ",") );
+            $(this).parents('tr').find('[data-ex]').val( price_ex.replace(".", ",") );
+            $(this).parents('tr').find('[data-tax]').val( tax.replace(".", ",") );
+            $(this).val( price_in.replace(".", ",") );
         });
 
         function vf(str) {
@@ -650,58 +663,58 @@ function fd_callback_003(){
         }
 
         $('[data-search-client]').on('focus', function(){
-        	$('.data-search-client-list').show();
+            $('.data-search-client-list').show();
         });
 
         $('[data-search-client]').on('blur', function(){
-        	setTimeout(function(){
-        		$('.data-search-client-list').hide();
-        	},300);
+            setTimeout(function(){
+                $('.data-search-client-list').hide();
+            },300);
         });
 
         $('[data-search-client]').on('keyup', function(e){
-        	var val = $(this).val();
-        	if(xhr){
-        		xhr.abort();
-        	}
-        	$('.data-search-client-list').html('<li style="padding: 5px 15px; margin: 0;">Zoeken...</li>');
-        	xhr = jQuery.ajax({
-				url: ajaxurl,
-	         	type: 'post',
-	         	dataType: 'JSON',
-	         	timeout: 30000,
-	         	data: {
-	         		action: 'fd_find_client',
-	         		val: $(this).val()
-	         	},
-	         	success: function(response) {
-        			$('.data-search-client-list').html(response);
-	         	}
-	        });
+            var val = $(this).val();
+            if(xhr){
+                xhr.abort();
+            }
+            $('.data-search-client-list').html('<li style="padding: 5px 15px; margin: 0;">Zoeken...</li>');
+            xhr = jQuery.ajax({
+                url: ajaxurl,
+                type: 'post',
+                dataType: 'JSON',
+                timeout: 30000,
+                data: {
+                    action: 'fd_find_client',
+                    val: $(this).val()
+                },
+                success: function(response) {
+                    $('.data-search-client-list').html(response);
+                }
+            });
         });
 
         $(document).on('click', '.data-search-client-list li', function(e){
-        	e.preventDefault();
-        	if($(this).data('client-id') > 0){
-        		jQuery.ajax({
-					url: ajaxurl,
-		         	type: 'post',
-		         	dataType: 'JSON',
-		         	timeout: 30000,
-		         	data: {
-		         		action: 'fd_set_client',
-		         		id: $(this).data('client-id')
-		         	},
-		         	success: function(response) {
-		         		$('input[name="fd_meta_name"]').val(response.name);
-						$('input[name="fd_meta_company"]').val(response.company);
-						$('input[name="fd_meta_email"]').val(response.email);
-						$('input[name="fd_meta_phone"]').val(response.phone);
-						$('input[name="fd_meta_address_1"]').val(response.address);
-						$('input[name="fd_meta_address_2"]').val(response.zip);
-		         	}
-		        });
-        	}
+            e.preventDefault();
+            if($(this).data('client-id') > 0){
+                jQuery.ajax({
+                    url: ajaxurl,
+                    type: 'post',
+                    dataType: 'JSON',
+                    timeout: 30000,
+                    data: {
+                        action: 'fd_set_client',
+                        id: $(this).data('client-id')
+                    },
+                    success: function(response) {
+                        $('input[name="fd_meta_name"]').val(response.name);
+                        $('input[name="fd_meta_company"]').val(response.company);
+                        $('input[name="fd_meta_email"]').val(response.email);
+                        $('input[name="fd_meta_phone"]').val(response.phone);
+                        $('input[name="fd_meta_address_1"]').val(response.address);
+                        $('input[name="fd_meta_address_2"]').val(response.zip);
+                    }
+                });
+            }
         })
     });
 
@@ -710,7 +723,7 @@ function fd_callback_003(){
     <table id='invoice-items' width='100%' style='text-align: left; font-size: 12px'>
     <thead width='100%'>
         <tr>
-            <th style='width: 60% !important;'	>Naam</th>
+            <th style='width: 60% !important;'  >Naam</th>
             <th>Aantal</th>
             <th>Prijs (excl BTW)</th>
             <th>BTW (21%)</th>
@@ -765,7 +778,7 @@ function fd_callback_004(){
     $tk = 'fd_meta_notes';
     $tkv = get_post_meta($post->ID, $tk, true );
     if( !$tkv ) {
-    	$tkv = '';
+        $tkv = '';
     }
 ?>
     <table width='100%'>
@@ -783,88 +796,88 @@ function fd_callback_005(){
     <script type="text/javascript">
     jQuery(document).ready(function($) {
         $('[data-ex-out]').on('blur', function(){
-        	var taxnum = parseInt(jQuery('input[name="fd_meta_receipt_tax"]:checked').val());
-        	if(taxnum < 0){
-        		taxnum = 0;
-        	}
-        	var price_ex = vf( jQuery(this).val() );
-        	var price_in = ((price_ex/100)*(100+taxnum)).toFixed(2);
-        	var tax = ((price_ex/100)*taxnum).toFixed(2);
-        	price_ex = price_ex.toFixed(2).toString();
+            var taxnum = parseInt(jQuery('input[name="fd_meta_receipt_tax"]:checked').val());
+            if(taxnum < 0){
+                taxnum = 0;
+            }
+            var price_ex = vf( jQuery(this).val() );
+            var price_in = ((price_ex/100)*(100+taxnum)).toFixed(2);
+            var tax = ((price_ex/100)*taxnum).toFixed(2);
+            price_ex = price_ex.toFixed(2).toString();
 
-        	$('[data-in-out]').val( price_in.replace(".", ",") );
-        	$(this).val( price_ex.replace(".", ",") ) ;
+            $('[data-in-out]').val( price_in.replace(".", ",") );
+            $(this).val( price_ex.replace(".", ",") ) ;
         });
 
         $('[data-in-out]').on('blur', function(){
-        	var taxnum = parseInt(jQuery('input[name="fd_meta_receipt_tax"]:checked').val());
-        	if(taxnum < 0){
-        		taxnum = 0;
-        	}
-        	var price_in = vf(jQuery(this).val());
-        	var price_ex = ((price_in/(100+taxnum))*100).toFixed(2);
-        	var tax = ((price_in/(100+taxnum))*taxnum).toFixed(2);
-        	price_in = price_in.toFixed(2).toString();
+            var taxnum = parseInt(jQuery('input[name="fd_meta_receipt_tax"]:checked').val());
+            if(taxnum < 0){
+                taxnum = 0;
+            }
+            var price_in = vf(jQuery(this).val());
+            var price_ex = ((price_in/(100+taxnum))*100).toFixed(2);
+            var tax = ((price_in/(100+taxnum))*taxnum).toFixed(2);
+            price_in = price_in.toFixed(2).toString();
 
-        	$('[data-ex-out]').val( price_ex.replace(".", ",") );
-        	$(this).val( price_in.replace(".", ",") );
+            $('[data-ex-out]').val( price_ex.replace(".", ",") );
+            $(this).val( price_in.replace(".", ",") );
         });
 
         $('input[name="fd_meta_receipt_tax"]').on('change', function(){
-        	if( $('[data-ex-out]').val() != '' ){
-        		$('[data-ex-out]').blur();
-        	}else{
-        		$('[data-in-out]').blur();
-        	}
+            if( $('[data-ex-out]').val() != '' ){
+                $('[data-ex-out]').blur();
+            }else{
+                $('[data-in-out]').blur();
+            }
         });
 
         function vf(str) {
-        	str = str.toString();
-		   	return parseFloat(str.replace(".", "").replace(",", "."));
-		}
-	});
-	</script>
+            str = str.toString();
+            return parseFloat(str.replace(".", "").replace(",", "."));
+        }
+    });
+    </script>
     <table width='100%'>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_date'; ?>
-	        <td style='font-size: 13px;'><label>Factuur datum</label></td>
-	        <td><input style='width: 100%;' type="date" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
-	    </tr>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_price_ex'; ?>
-	        <td style='font-size: 13px;'><label>Betaald bedrag (excl. BTW)</label></td>
-	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-ex-out/></td>
-	    </tr>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_tax'; ?>
-	        <td style='font-size: 13px; width:200px;'><label>BTW percentage</label></td>
-	        <td><?php  $tkv = get_post_meta($post->ID, $tk, true );?>
-	            <div>
-	           	 	<input type='radio' name='<?php echo $tk; ?>' value='0' <?php if($tkv == '0'){echo 'checked'; }; ?> /><span style='font-size: 13px;'>0%</span> /
-	                <input type='radio' name='<?php echo $tk; ?>' value='6' <?php if($tkv == '6'){echo 'checked'; }; ?> /><span style='font-size: 13px;'>6%</span> /
-	                <input type='radio' name='<?php echo $tk; ?>' value='21' <?php if($tkv == '21' || $tkv == ''){echo 'checked'; }; ?> /><span style='font-size: 13px;'>21%</span> /
-	                <input type='radio' name='<?php echo $tk; ?>' value='-1' <?php if($tkv == '-1' || $tkv == ''){echo 'checked'; }; ?> /><span style='font-size: 13px;'>Privé onttrekking</span>
-	            </div>
-	        </td>
-	    </tr>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_price'; ?>
-	        <td style='font-size: 13px;'><label>Betaald bedrag (incl. BTW)</label></td>
-	        <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-in-out/></td>
-	    </tr>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_file'; $tkv = get_post_meta($post->ID, $tk, true ); ?>
-	        <td style='font-size: 13px; width:200px;'><label>Bijlage</label></td>
-	        <td>
-	        	<?php if($tkv){ echo '<small><a href="'.$tkv['url'].'" target="_blank">'.basename($tkv['url']).'</a></small>'; } ?>
-	        	<input style='width: 100%;' type="file" name="<?php echo $tk; ?>" value="" />
-	        </td>
-	    </tr>
-	    <tr>
-	        <?php $tk = 'fd_meta_receipt_desc'; ?>
-	        <td style='font-size: 13px;'><label>Factuur omschrijving</label></td>
-	        <td><textarea style='width: 100%;' rows="4" name="<?php echo $tk; ?>"><?php $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?></textarea></td>
-	    </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_date'; ?>
+            <td style='font-size: 13px;'><label>Factuur datum</label></td>
+            <td><input style='width: 100%;' type="date" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?>" /></td>
+        </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_price_ex'; ?>
+            <td style='font-size: 13px;'><label>Betaald bedrag (excl. BTW)</label></td>
+            <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-ex-out/></td>
+        </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_tax'; ?>
+            <td style='font-size: 13px; width:200px;'><label>BTW percentage</label></td>
+            <td><?php  $tkv = get_post_meta($post->ID, $tk, true );?>
+                <div>
+                    <input type='radio' name='<?php echo $tk; ?>' value='0' <?php if($tkv == '0'){echo 'checked'; }; ?> /><span style='font-size: 13px;'>0%</span> /
+                    <input type='radio' name='<?php echo $tk; ?>' value='6' <?php if($tkv == '6'){echo 'checked'; }; ?> /><span style='font-size: 13px;'>6%</span> /
+                    <input type='radio' name='<?php echo $tk; ?>' value='21' <?php if($tkv == '21' || $tkv == ''){echo 'checked'; }; ?> /><span style='font-size: 13px;'>21%</span> /
+                    <input type='radio' name='<?php echo $tk; ?>' value='-1' <?php if($tkv == '-1' || $tkv == ''){echo 'checked'; }; ?> /><span style='font-size: 13px;'>Privé onttrekking</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_price'; ?>
+            <td style='font-size: 13px;'><label>Betaald bedrag (incl. BTW)</label></td>
+            <td><input style='width: 100%;' type="text" name="<?php echo $tk; ?>" value="<?php  $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; }else{ echo '0'; };?>" data-in-out/></td>
+        </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_file'; $tkv = get_post_meta($post->ID, $tk, true ); ?>
+            <td style='font-size: 13px; width:200px;'><label>Bijlage</label></td>
+            <td>
+                <?php if($tkv){ echo '<small><a href="'.$tkv['url'].'" target="_blank">'.basename($tkv['url']).'</a></small>'; } ?>
+                <input style='width: 100%;' type="file" name="<?php echo $tk; ?>" value="" />
+            </td>
+        </tr>
+        <tr>
+            <?php $tk = 'fd_meta_receipt_desc'; ?>
+            <td style='font-size: 13px;'><label>Factuur omschrijving</label></td>
+            <td><textarea style='width: 100%;' rows="4" name="<?php echo $tk; ?>"><?php $tkv = get_post_meta($post->ID, $tk, true ); if($tkv){echo $tkv; };?></textarea></td>
+        </tr>
     </table>
 
 <?php }
@@ -1049,18 +1062,18 @@ add_filter( 'single_template', 'fd_get_custom_post_type_template' );
 add_filter( 'archive_template', 'fd_get_custom_post_type_template' ) ;
 
 function fd_custom_search_tpl( $template ) {
-	$priority_template_lookup = array(
-		get_stylesheet_directory() . '/templates/search.php',
-		get_template_directory() . '/templates/search.php',
-		plugin_dir_path( __FILE__ ) . 'templates/'.$template.'.php',
-	);
+    $priority_template_lookup = array(
+        get_stylesheet_directory() . '/templates/search.php',
+        get_template_directory() . '/templates/search.php',
+        plugin_dir_path( __FILE__ ) . 'templates/'.$template.'.php',
+    );
 
-	foreach ( $priority_template_lookup as $exists ) {
-		if ( file_exists( $exists ) ) {
-			return $exists;
-			exit;
-		}
-	}
+    foreach ( $priority_template_lookup as $exists ) {
+        if ( file_exists( $exists ) ) {
+            return $exists;
+            exit;
+        }
+    }
     return $template;
 }
 
@@ -1106,106 +1119,106 @@ add_filter( 'manage_edit-receipt_sortable_columns', 'fd_make_sortable_column_rec
 //Add content to column
 function fd_set_invoice_column_content( $column_name, $post_id ) {
     if ( $column_name == 'invoice_number' ) {
-    	$tk = 'fd_meta_invoice_num';
-    	$tkv = get_post_meta($post_id, $tk, true );
-    	if($tkv){
-    		echo $tkv;
-    	}
+        $tk = 'fd_meta_invoice_num';
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            echo $tkv;
+        }
     }
     if ( $column_name == 'invoice_state' ) {
-		$tk = 'fd_meta_invoice_status';
-		$tkv = get_post_meta($post_id, $tk, true );
-		if($tkv){
-			echo ucfirst($tkv);
-    	}
-    	if($tkv == 'onbetaald'){
-	    	$tk = 'fd_meta_invoice_due';
-			$tkv = get_post_meta($post_id, $tk, true );
-			if($tkv){
-				if( date('Y-m-d') > $tkv ){
-					echo '<br/><span style="color:#f00;"> (Betaaldatum verlopen)</span><br/><a href="'.add_query_arg( 'reminder', 'true', get_permalink($post_id) ).'" target="_blank">Maak een reminder</a>';
-				}
-			}
-			echo '<br/><a href="'.get_edit_post_link($post_id).'" target="_blank" data-mark="'.$post_id.'">Markeer als betaald</a>';
-		}
+        $tk = 'fd_meta_invoice_status';
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            echo ucfirst($tkv);
+        }
+        if($tkv == 'onbetaald'){
+            $tk = 'fd_meta_invoice_due';
+            $tkv = get_post_meta($post_id, $tk, true );
+            if($tkv){
+                if( date('Y-m-d') > $tkv ){
+                    echo '<br/><span style="color:#f00;"> (Betaaldatum verlopen)</span><br/><a href="'.add_query_arg( 'reminder', 'true', get_permalink($post_id) ).'" target="_blank">Maak een reminder</a>';
+                }
+            }
+            echo '<br/><a href="'.get_edit_post_link($post_id).'" target="_blank" data-mark="'.$post_id.'">Markeer als betaald</a>';
+        }
     }
     if ( $column_name == 'invoice_date' ) {
-		$tk = 'fd_meta_invoice_date';
-		$months = array('januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december');
-		$tkv = get_post_meta($post_id, $tk, true );
-		if($tkv){
-			$tkv = explode('-', $tkv);
-			echo $tkv[2] . ' ' . $months[ intval($tkv[1])-1] . ' ' . $tkv[0];
-		}
+        $tk = 'fd_meta_invoice_date';
+        $months = array('januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december');
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            $tkv = explode('-', $tkv);
+            echo $tkv[2] . ' ' . $months[ intval($tkv[1])-1] . ' ' . $tkv[0];
+        }
     }
     if ( $column_name == 'invoice_client' ) {
-		$tks = array('fd_meta_name', 'fd_meta_company', 'fd_meta_address_1', 'fd_meta_address_2','fd_meta_phone');
+        $tks = array('fd_meta_name', 'fd_meta_company', 'fd_meta_address_1', 'fd_meta_address_2','fd_meta_phone');
 
-		foreach ($tks as $tk) {
-		  	$tkv = get_post_meta($post_id, $tk, true );
-			if($tkv){
-				echo $tkv . '<br/>';
-			}
-		}
+        foreach ($tks as $tk) {
+            $tkv = get_post_meta($post_id, $tk, true );
+            if($tkv){
+                echo $tkv . '<br/>';
+            }
+        }
     }
     if ( $column_name == 'invoice_amount' ) {
-    	$invoiceRows = get_post_meta($post_id, 'invoice_rows', true );
-		$rowCount = count($invoiceRows);
-		if( $invoiceRows ) {
-			$dollarAmount = 0;
-			for ( $i = 0; $i < $rowCount; $i++ ) {
-				$tmp = str_replace(',', '.', $invoiceRows[$i+1]['rowItemCosts']);
-				$dollarAmount = $dollarAmount + $tmp;
-			}
-			$tt = $dollarAmount * 21 / 100;
-			$output = '<span style="display: inline-block; width: 80px;">Subtotaal: </span>€ ' . number_format ( $dollarAmount, 2, ',' , '.' ) . '<br/>';
-	    	$output .= '<span style="display: inline-block; width: 80px;">BTW: </span>€ ' . number_format ( $tt, 2, ',' , '.' ) . '<br/>';
-			$output .= '<span style="display: inline-block; width: 80px;">Totaal: </span>€ ' . number_format ( $dollarAmount +$tt, 2, ',' , '.' );
-			echo $output;
-		}
+        $invoiceRows = get_post_meta($post_id, 'invoice_rows', true );
+        $rowCount = count($invoiceRows);
+        if( $invoiceRows ) {
+            $dollarAmount = 0;
+            for ( $i = 0; $i < $rowCount; $i++ ) {
+                $tmp = str_replace(',', '.', $invoiceRows[$i+1]['rowItemCosts']);
+                $dollarAmount = $dollarAmount + $tmp;
+            }
+            $tt = $dollarAmount * 21 / 100;
+            $output = '<span style="display: inline-block; width: 80px;">Subtotaal: </span>€ ' . number_format ( $dollarAmount, 2, ',' , '.' ) . '<br/>';
+            $output .= '<span style="display: inline-block; width: 80px;">BTW: </span>€ ' . number_format ( $tt, 2, ',' , '.' ) . '<br/>';
+            $output .= '<span style="display: inline-block; width: 80px;">Totaal: </span>€ ' . number_format ( $dollarAmount +$tt, 2, ',' , '.' );
+            echo $output;
+        }
     }
 }
 add_action( 'manage_invoice_posts_custom_column', 'fd_set_invoice_column_content', 10, 2 );
 
 function fd_set_receipt_column_content( $column_name, $post_id ) {
     if ( $column_name == 'receipt_date' ) {
-    	$tk = 'fd_meta_receipt_date';
-		$months = array('januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december');
-		$tkv = get_post_meta($post_id, $tk, true );
-		if($tkv){
-			$tkv = explode('-', $tkv);
-			echo $tkv[2] . ' ' . $months[ intval($tkv[1])-1] . ' ' . $tkv[0];
-		}
+        $tk = 'fd_meta_receipt_date';
+        $months = array('januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december');
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            $tkv = explode('-', $tkv);
+            echo $tkv[2] . ' ' . $months[ intval($tkv[1])-1] . ' ' . $tkv[0];
+        }
     }
 
-	if ( $column_name == 'receipt_file' ) {
-		$tk = 'fd_meta_receipt_file';
-		$tkv = get_post_meta($post_id, $tk, true );
-		if( $tkv ) {
-			echo '<a href=" ' . $tkv['url'] . '" target="_blank">' . basename($tkv['url']) . '</a>';
-		}
-	}
+    if ( $column_name == 'receipt_file' ) {
+        $tk = 'fd_meta_receipt_file';
+        $tkv = get_post_meta($post_id, $tk, true );
+        if( $tkv ) {
+            echo '<a href=" ' . $tkv['url'] . '" target="_blank">' . basename($tkv['url']) . '</a>';
+        }
+    }
 
-	if ( $column_name == 'receipt_price' ) {
-		$tk = 'fd_meta_receipt_price_ex';
-		$tkv = get_post_meta($post_id, $tk, true );
-		if($tkv){
-			$tkv = str_replace(',', '.',$tkv);
-			echo '€ ' . number_format ( $tkv, 2, ',' , '.' );
-		}
-	}
+    if ( $column_name == 'receipt_price' ) {
+        $tk = 'fd_meta_receipt_price_ex';
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            $tkv = str_replace(',', '.',$tkv);
+            echo '€ ' . number_format ( $tkv, 2, ',' , '.' );
+        }
+    }
 
-	if ( $column_name == 'receipt_tax' ) {
-		$tk = 'fd_meta_receipt_tax';
-		$tkv = get_post_meta($post_id, $tk, true );
-		if($tkv){
-			$tk = 'fd_meta_receipt_price';
-			$price = get_post_meta($post_id, $tk, true );
-			$price = str_replace(',', '.',$price);
-			$tax = ($price / (100+$tkv)) * $tkv;
-			echo '€ ' . number_format ( $tax, 2, ',' , '.' );
-		}
-	}
+    if ( $column_name == 'receipt_tax' ) {
+        $tk = 'fd_meta_receipt_tax';
+        $tkv = get_post_meta($post_id, $tk, true );
+        if($tkv){
+            $tk = 'fd_meta_receipt_price';
+            $price = get_post_meta($post_id, $tk, true );
+            $price = str_replace(',', '.',$price);
+            $tax = ($price / (100+$tkv)) * $tkv;
+            echo '€ ' . number_format ( $tax, 2, ',' , '.' );
+        }
+    }
 
 }
 add_action( 'manage_receipt_posts_custom_column', 'fd_set_receipt_column_content', 10, 2 );
@@ -1215,24 +1228,24 @@ add_action( 'manage_receipt_posts_custom_column', 'fd_set_receipt_column_content
 // These files are only accessible when the user is logged in (cookie check)
 // -----------------------------------
 function fd_protect_files_by_mod_rewrite( $rules ) {
-	$str = '';
+    $str = '';
 
-	// get all publications that are private
-	$private_publications = get_posts( array(
-		'post_type' => 'receipt',
-		'posts_per_page' => -1,
-	) );
+    // get all publications that are private
+    $private_publications = get_posts( array(
+        'post_type' => 'receipt',
+        'posts_per_page' => -1,
+    ) );
 
-	// now get all correponding files and create the rewrite rules
-	foreach( $private_publications as $publication ) {
-		$file = get_post_meta($publication->ID, 'fd_meta_receipt_file', true );
-		if ( $file ) {
-			// strip out 'the site_url/wp-content' as this is unneeded in the rewrite rule condition
-			$file_path = str_replace( site_url() . '/wp-content/', '', $file['url'] );
-			$str .= "RewriteCond %{HTTP_COOKIE} !^.*wordpress_logged_in.*$ [NC]\n";
-			$str .= "RewriteRule ".$file_path." ".site_url()." [NC,L]\n";
-		}
-	}
+    // now get all correponding files and create the rewrite rules
+    foreach( $private_publications as $publication ) {
+        $file = get_post_meta($publication->ID, 'fd_meta_receipt_file', true );
+        if ( $file ) {
+            // strip out 'the site_url/wp-content' as this is unneeded in the rewrite rule condition
+            $file_path = str_replace( site_url() . '/wp-content/', '', $file['url'] );
+            $str .= "RewriteCond %{HTTP_COOKIE} !^.*wordpress_logged_in.*$ [NC]\n";
+            $str .= "RewriteRule ".$file_path." ".site_url()." [NC,L]\n";
+        }
+    }
 
     return $rules . $str;
 }
@@ -1243,9 +1256,9 @@ add_filter('mod_rewrite_rules', 'fd_protect_files_by_mod_rewrite');
 // in order to protect private files from an unauthorized download
 // -----------------------------------
 function fd_flush_rewrite_rules_after_save( $post_id ) {
-	if ( get_post_type( $post_id ) == 'receipt' ) {
-		flush_rewrite_rules();
-	}
+    if ( get_post_type( $post_id ) == 'receipt' ) {
+        flush_rewrite_rules();
+    }
 }
 add_action( 'save_post', 'fd_flush_rewrite_rules_after_save' );
 
@@ -1253,25 +1266,25 @@ add_filter( 'query_vars', 'fd_add_query_vars');
 function fd_add_query_vars( $vars ){
     $vars[] = 'cyear';
     $vars[] = 'cquarter';
-	return $vars;
+    return $vars;
 }
 
 // Add rules
 function fd_custom_rewrite_basic() {
   add_rewrite_rule(
-  	'^financieel-dashboard/jaar/([0-9]+)/kwartaal/([0-9]+)?',
-  	'index.php?post_type=receipt&cyear=$matches[1]&cquarter=$matches[2]',
-  	'top'
+    '^financieel-dashboard/jaar/([0-9]+)/kwartaal/([0-9]+)?',
+    'index.php?post_type=receipt&cyear=$matches[1]&cquarter=$matches[2]',
+    'top'
   );
   add_rewrite_rule(
-  	'^financieel-dashboard/jaar/([0-9]+)/?',
-  	'index.php?post_type=receipt&cyear=$matches[1]',
-  	'top'
+    '^financieel-dashboard/jaar/([0-9]+)/?',
+    'index.php?post_type=receipt&cyear=$matches[1]',
+    'top'
   );
   add_rewrite_rule(
-  	'^financieel-dashboard/?',
-  	'index.php?post_type=receipt',
-  	'top'
+    '^financieel-dashboard/?',
+    'index.php?post_type=receipt',
+    'top'
   );
 }
 add_action('init', 'fd_custom_rewrite_basic');
@@ -1279,22 +1292,22 @@ add_action('init', 'fd_custom_rewrite_basic');
 add_action('admin_bar_menu', 'fd_toolbar_link', 40);
 
 function fd_toolbar_link($wp_admin_bar) {
-	$args = array(
+    $args = array(
         'id' => 'fd-dashboard',
-		'title' => 'Financieel Dashboard',
-		'href' => home_url( '/financieel-dashboard/' ),
-		'meta' => array(
-			'target' => '_blank',
-		)
-	);
-	$wp_admin_bar->add_node( $args );
+        'title' => 'Financieel Dashboard',
+        'href' => home_url( '/financieel-dashboard/' ),
+        'meta' => array(
+            'target' => '_blank',
+        )
+    );
+    $wp_admin_bar->add_node( $args );
 }
 
 add_filter( 'post_row_actions', 'fd_remove_row_actions', 10, 2 );
 function fd_remove_row_actions( $actions, $post ){
-  	global $current_screen;
+    global $current_screen;
     if( $current_screen->post_type == 'invoice' || $current_screen->post_type == 'receipt' ){
-    	unset( $actions['inline hide-if-no-js'] );
+        unset( $actions['inline hide-if-no-js'] );
     }
     return $actions;
 }
@@ -1303,90 +1316,90 @@ function fd_add_admin_scripts() {
     global $post;
     if((isset($_GET['post_type']) && $_GET['post_type'] == 'invoice')){
     ?>
-	    <script type="text/javascript">
-		    jQuery(document).ready(function($) {
-		       	jQuery('[data-mark]').on('click', function(e){
-		       		e.preventDefault();
-		       		var col = jQuery(this).parent();
-		       		col.html('Betaalstatus aanpassen...');
-		       		jQuery.ajax({
-						url: ajaxurl,
-			         	type: 'post',
-			         	dataType: 'JSON',
-			         	timeout: 30000,
-			         	data: {
-			         		action: 'fd_update_post_status',
-			         		id: jQuery(this).data('mark')
-			         	},
-			         	success: function(response) {
-			         		col.html('Betaald');
-			         	},
-			         	error: function (jqXHR, exception) {
-					        col.html('<span style="color:#f00;">Betaalstatus aanpassen niet gelukt. </span>');
-					    },
-			        });
-		       	});
-		    });
-		</script>
-	<?php
-	}
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                jQuery('[data-mark]').on('click', function(e){
+                    e.preventDefault();
+                    var col = jQuery(this).parent();
+                    col.html('Betaalstatus aanpassen...');
+                    jQuery.ajax({
+                        url: ajaxurl,
+                        type: 'post',
+                        dataType: 'JSON',
+                        timeout: 30000,
+                        data: {
+                            action: 'fd_update_post_status',
+                            id: jQuery(this).data('mark')
+                        },
+                        success: function(response) {
+                            col.html('Betaald');
+                        },
+                        error: function (jqXHR, exception) {
+                            col.html('<span style="color:#f00;">Betaalstatus aanpassen niet gelukt. </span>');
+                        },
+                    });
+                });
+            });
+        </script>
+    <?php
+    }
 }
 add_action( 'admin_head-edit.php', 'fd_add_admin_scripts', 10, 1 );
 
 add_action( 'wp_ajax_fd_update_post_status', 'fd_update_post_status' );
 function fd_update_post_status() {
-	if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		$post_id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : "";
+    if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        $post_id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : "";
 
-		if( get_post_type( $post_id ) == 'invoice' ) {
-			update_post_meta($post_id, 'fd_meta_invoice_status', 'betaald');
-			echo json_encode( 'true' );
-		}else{
-			echo json_encode( 'false' );
-		}
+        if( get_post_type( $post_id ) == 'invoice' ) {
+            update_post_meta($post_id, 'fd_meta_invoice_status', 'betaald');
+            echo json_encode( 'true' );
+        }else{
+            echo json_encode( 'false' );
+        }
 
-	}
+    }
     wp_die();
 }
 
 add_action( 'wp_ajax_fd_find_client', 'fd_find_client' );
 function fd_find_client() {
-	if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		$val = isset( $_POST['val'] ) ? esc_html( $_POST['val'] ) : "";
-		$args = array(
-			'post_type' => 'client',
-			'posts_per_page' => 5,
-			's' => $val
-		);
-		$posts = get_posts($args);
-		if( sizeof($posts) > 0 ) {
-			$output = '';
-			foreach ($posts as $post) {
-				$output .= '<li style="padding: 5px 15px; margin: 0;"data-client-id="'.$post->ID.'">'.$post->post_title.'</li>';
-			}
-			echo json_encode( $output );
-		}else{
-			echo json_encode( '<li style="padding: 5px 15px; margin: 0;">Deze klant bevindt zich nog niet in het systeem</li>' );
-		}
+    if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        $val = isset( $_POST['val'] ) ? esc_html( $_POST['val'] ) : "";
+        $args = array(
+            'post_type' => 'client',
+            'posts_per_page' => 5,
+            's' => $val
+        );
+        $posts = get_posts($args);
+        if( sizeof($posts) > 0 ) {
+            $output = '';
+            foreach ($posts as $post) {
+                $output .= '<li style="padding: 5px 15px; margin: 0;"data-client-id="'.$post->ID.'">'.$post->post_title.'</li>';
+            }
+            echo json_encode( $output );
+        }else{
+            echo json_encode( '<li style="padding: 5px 15px; margin: 0;">Deze klant bevindt zich nog niet in het systeem</li>' );
+        }
 
-	}
+    }
     wp_die();
 }
 
 add_action( 'wp_ajax_fd_set_client', 'fd_set_client' );
 function fd_set_client() {
-	if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		$id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : "";
+    if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        $id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : "";
 
-		$output = array(
-			'name' => get_post_meta( $id, 'fd_meta_name', true ),
-			'company' => get_post_meta( $id, 'fd_meta_company', true ),
-			'email' => get_post_meta( $id, 'fd_meta_email', true ),
-			'phone' => get_post_meta( $id, 'fd_meta_phone', true ),
-			'address' => get_post_meta( $id, 'fd_meta_address_1', true ),
-			'zip' => get_post_meta( $id, 'fd_meta_address_2', true )
-		);
-		echo json_encode( $output );
-	}
+        $output = array(
+            'name' => get_post_meta( $id, 'fd_meta_name', true ),
+            'company' => get_post_meta( $id, 'fd_meta_company', true ),
+            'email' => get_post_meta( $id, 'fd_meta_email', true ),
+            'phone' => get_post_meta( $id, 'fd_meta_phone', true ),
+            'address' => get_post_meta( $id, 'fd_meta_address_1', true ),
+            'zip' => get_post_meta( $id, 'fd_meta_address_2', true )
+        );
+        echo json_encode( $output );
+    }
     wp_die();
 }
