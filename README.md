@@ -4,6 +4,9 @@ A WordPress plugin to manage invoices & receipts (only for the Dutch market). Th
 ## Templates ##
 By default, 2 templates are added; One for the single invoice and one for the single receipt. You can add your own templates inside a template folder of your theme. Copy the template files from the plugin to your theme and start editing. Don't forget the print css, for the pdf generation.
 
+## New ##
+Version 1.2 adds a tab to manage clients. Now when making an invoice you can search in your clients list and add the details of selected client, right from your invoice edit page. (Based on the feedback: "When I create more invoices for the same client I don't want to manually add the receivers address everytime I add a new invoice.") 
+
 ## Screenshots ##
 
 ![Dashboard - Year](https://raw.githubusercontent.com/houke/finance-dashboard/master/screenshots/dashboard-1.png)
