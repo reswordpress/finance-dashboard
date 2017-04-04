@@ -3,12 +3,12 @@
 Plugin Name: Financieel dashboard
 Plugin Script: finance.php
 Description: Financieel dashboard
-Version: 1.2
 Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
 GitHub Plugin URI: https://github.com/houke/finance-dashboard
 GitHub Branch: master
+Version: 1.2
 */
 
 
@@ -1063,8 +1063,8 @@ add_filter( 'archive_template', 'fd_get_custom_post_type_template' ) ;
 
 function fd_custom_search_tpl( $template ) {
     $priority_template_lookup = array(
-        get_stylesheet_directory() . '/templates/search.php',
-        get_template_directory() . '/templates/search.php',
+        get_stylesheet_directory() . '/templates/'.$template.'.php',
+        get_template_directory() . '/templates/'.$template.'.php',
         plugin_dir_path( __FILE__ ) . 'templates/'.$template.'.php',
     );
 
