@@ -8,7 +8,7 @@ Author URI: http://thearthunters.com
 License: GPLv2 or later
 GitHub Plugin URI: https://github.com/houke/finance-dashboard
 GitHub Branch: master
-Version: 1.2
+Version: 1.3
 */
 
 
