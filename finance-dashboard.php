@@ -23,7 +23,8 @@ $cpg_constants = array(
 	'NAME'				=> 'finance-dashboard',
 	'BASENAME'          => plugin_basename( __FILE__ ),
 	'DIR'               => plugin_dir_path( __FILE__ ),
-	'URL'               => plugin_dir_url( __FILE__ )
+	'URL'               => plugin_dir_url( __FILE__ ),
+	'FILE'              => __FILE__
 );
 
 foreach ( $cpg_constants as $const_name => $constant_val ) {
