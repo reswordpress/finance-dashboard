@@ -143,19 +143,27 @@
 						</tr>
 					</thead>
 					<tbody>
-
-						<?php $rowCount = count($invoiceRows);
-						$dollarAmount = (float)0;
+					<?php
+						$rowCount = count($invoiceRows);
+						$subamount = 0;
+						$taxamount = 0;
+						$totalamount = 0;
 					    for ( $i = 0; $i < $rowCount; $i++ ) { ?>
 					    	<?php
-					    		$dollarAmount = $dollarAmount + (float)(str_replace(',', '.', $invoiceRows[$i+1]['rowItemCosts']));
+					    		if( $invoiceRows[$i]['rowItemTaxNum'][0] > -1 ){
+					    		$subamount = $subamount + str_replace(',', '.', $invoiceRows[$i]['rowItemCosts']);
+					    		$taxamount = $taxamount + str_replace(',', '.', $invoiceRows[$i]['rowItemTax']);
+					    		$totalamount = $totalamount + str_replace(',', '.', $invoiceRows[$i]['rowItemTotal']);
 					    	?>
-					        <tr>
-								<th><?php echo $invoiceRows[$i+1]['rowItemNames']; ?></th>
-								<td><?php echo $invoiceRows[$i+1]['rowItemCounts']; ?></td>
-								<td>€ <?php echo $invoiceRows[$i+1]['rowItemCosts']; ?></td>
-							</tr>
-					    <?php } ?>
+						        <tr>
+									<th><?php echo $invoiceRows[$i]['rowItemNames']; ?></th>
+									<td><?php echo $invoiceRows[$i]['rowItemCounts']; ?></td>
+									<td>€ <?php echo $invoiceRows[$i]['rowItemCosts']; ?></td>
+								</tr>
+					    <?php
+						    	}
+						    }
+					    ?>
 
 					</tbody>
 				</table>
@@ -167,21 +175,15 @@
 					<tbody>
 						<tr>
 							<th>Subtotaal: </th>
-							<td>€ <?php echo number_format ( $dollarAmount, 2, ',' , '.' ); ?></td>
+							<td>€ <?php echo number_format ( $subamount, 2, ',' , '.' ); ?></td>
 						</tr>
-						<?php if( isset($options['tax'])){ ?>
 						<tr>
-							<th>BTW <?php echo $options['tax']; ?>%: </th>
-							<td>€ <?php $tt = $dollarAmount * $options['tax'] / 100; echo number_format ( $tt, 2, ',' , '.' ); ?></td>
+							<th>BTW%: </th>
+							<td>€ <?php echo number_format ( $taxamount, 2, ',' , '.' ); ?></td>
 						</tr>
-						<?php }; ?>
 						<tr>
 							<th><strong>Totaal te voldoen: </strong></th>
-							<?php if( isset($options['tax'])){?>
-								<td>€ <?php echo number_format ( $dollarAmount +$tt, 2, ',' , '.' ); ?></td>
-							<?php } else { ?>
-								<td>€ <?php echo number_format ( $dollarAmount, 2, ',' , '.' ); ?></td>
-							<?php } ?>
+							<td>€ <?php echo number_format ( $totalamount, 2, ',' , '.' ); ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -193,23 +195,22 @@
 				<table>
 					<tr>
 						<td>
-							<?php if( isset($options['tax']) ){ ?>
+							<?php if( isset($options['bank']) ){ ?>
 								<strong>Rekeningnr.</strong>
 								<?php echo $options['bank']; ?>
 							<?php } ?>
 						</td>
 						<td>
 							<strong>Factuurnummer</strong>
-							<?php $tk = 'fd_meta_invoice_num';  $tkv = get_post_meta($post->ID, $tk, true ); ?>
-							<?php echo $tkv; ?>
+							<?php
+								$tk = 'fd_meta_invoice_num';
+								$tkv = get_post_meta($post->ID, $tk, true );
+								echo $tkv;
+							?>
 						</td>
 						<td>
 							<strong>Factuurbedrag</strong>
-							<?php if( isset($options['tax']) ){?>
-								€ <?php echo number_format ( $dollarAmount +$tt, 2, ',' , '.' ); ?>
-							<?php } else { ?>
-								€ <?php echo number_format ( $dollarAmount, 2, ',' , '.' ); ?>
-							<?php } ?>
+							€ <?php echo number_format ( $totalamount, 2, ',' , '.' ); ?>
 						</td>
 					</tr>
 				</table>

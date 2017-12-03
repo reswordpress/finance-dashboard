@@ -1,14 +1,17 @@
-*, :after, :before {
-    box-sizing: border-box;
+*,
+:after,
+:before {
+	box-sizing: border-box;
 }
-html, body{
+html,
+body {
 	background-color: #2b2e3b;
 }
-.menu li a.active{
+.menu li a.active {
 	text-decoration: underline;
 }
 
-.menu li ul{
+.menu li ul {
 	position: absolute;
 	list-style: none;
 	z-index: 3;
@@ -16,67 +19,67 @@ html, body{
 	border-radius: 0 6px 6px 6px;
 }
 
-.menu li:hover ul{
+.menu li:hover ul {
 	display: block;
 	margin: 0;
 	overflow: hidden;
-	box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-.menu li.has-submenu:hover a{
+.menu li.has-submenu:hover a {
 	background-color: #fff;
 	color: #2b2e3b;
 	border-radius: 6px 6px 0 0;
 }
 
-.menu li ul li{
+.menu li ul li {
 	display: block;
 	white-space: nowrap;
 	background-color: #fff;
 }
 
-.menu li ul li a{
+.menu li ul li a {
 	padding: 10px 25px;
 }
 
-.menu li ul li a{
+.menu li ul li a {
 	color: #2b2e3b;
 }
 
-.menu li ul a{
+.menu li ul a {
 	padding: 12px 16px;
 	white-space: nowrap;
 }
 
-.dashboard{
+.dashboard {
 	padding-top: 170px;
 }
 
-.number{
+.number {
 	position: relative;
 	text-align: center;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #ddd;
 }
 
-.number small{
+.number small {
 	font-size: 18px;
 	color: #999;
 	display: block;
 	line-height: 18px;
 }
 
-.callout.callout-table{
+.callout.callout-table {
 	border: none;
 	border-radius: 6px;
 	background-color: #fff;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 	padding: 50px 0 0;
 	overflow: hidden;
 	margin-bottom: 30px;
 }
 
-.table-overflow{
+.table-overflow {
 	overflow-x: scroll;
 	width: 100%;
 }
@@ -85,12 +88,12 @@ html, body{
 .callout.callout-table table tfoot th,
 .callout.callout-table table thead td,
 .callout.callout-table table thead th,
-.callout.callout-table table tbody td{
+.callout.callout-table table tbody td {
 	padding: 15px;
 	text-align: left;
 }
 
-.callout.callout-table h5{
+.callout.callout-table h5 {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -100,11 +103,23 @@ html, body{
 	font-size: 14px;
 	color: #fff;
 	font-weight: bold;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 	background-color: #0091c7;
 }
 
-.callout.callout-table h5 label{
+.new-table {
+	padding: 15px;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	background-color: #0091c7;
+	border: 1px solid #0091c7;
+	border-top: 5px solid #2b2e3b;
+}
+
+.callout.callout-table h5 label {
 	display: inline-block;
 	font-size: 12px;
 	border-radius: 3px;
@@ -115,68 +130,68 @@ html, body{
 	text-shadow: none;
 }
 
-.callout.callout-table h5.income{
+.callout.callout-table h5.income {
 	background-color: #00c764;
 }
 
-.callout.callout-table h5.expense{
+.callout.callout-table h5.expense {
 	background-color: #d8454a;
 }
 
-.callout .table{
+.callout .table {
 	font-size: 14px;
 	border-collapse: collapse;
 	margin: 0;
 }
 
-.callout>.table th{
+.callout > .table th {
 	font-size: 12px;
 }
 
-.callout.callout-table{
+.callout.callout-table {
 	background-color: #f8f8f8;
 }
 
-.table small{
+.table small {
 	font-weight: normal;
 }
 
-.table td{
+.table td {
 	position: relative;
 }
 
-.has-tip:hover + .tooltip{
+.has-tip:hover + .tooltip {
 	display: block;
 }
 
-.table-centered thead th{
+.table-centered thead th {
 	text-align: center;
 }
 
-.has-tip{
+.has-tip {
 	font-weight: normal;
 }
 
-strong .has-tip{
+strong .has-tip {
 	font-weight: bold;
 }
 
-.menu-text{
+.menu-text {
 	padding-left: 0;
 	width: 100%;
 	display: block;
 	font-size: 40px;
 	font-weight: bold;
-	font-family: "Times New Roman", serif;
+	font-family: 'Times New Roman', serif;
 	font-weight: 900;
 }
 
-.menu-text span{
+.menu-text span {
 	font-style: italic;
 	font-weight: 100;
 }
 
-.top-bar{
+.top-bar {
 	background-color: transparent;
 	color: #fff;
 	text-align: center;
@@ -187,53 +202,53 @@ strong .has-tip{
 	padding: 20px 0 40px;
 }
 
-.top-bar ul{
+.top-bar ul {
 	text-align: center;
 	background-color: transparent;
 }
 
-.top-bar ul li{
+.top-bar ul li {
 	display: inline-block;
 }
 
-.top-bar ul li a{
+.top-bar ul li a {
 	color: #fff;
 }
 
-.top-bar-right{
+.top-bar-right {
 	padding-top: 7px;
 }
 
-div.tooltip{
+div.tooltip {
 	display: none;
 	margin: 0;
 	list-style: none;
-    left: 0;
-    width: 150px;
+	left: 0;
+	width: 150px;
 	max-width: none;
 }
 
-div.tooltip.tip-large{
+div.tooltip.tip-large {
 	width: auto;
 	max-width: 500px;
 }
 
-div.tooltip.tip-top{
-	bottom: calc(100% + .6495rem);
+div.tooltip.tip-top {
+	bottom: calc(100% + 0.6495rem);
 	top: auto;
 }
-div.tooltip.tip-top:before{
+div.tooltip.tip-top:before {
 	top: 100%;
 	bottom: auto;
 	border-bottom-width: 0;
 	border-top-width: 0.75rem;
 	border-color: #0a0a0a transparent transparent;
 }
-div.tooltip:before{
+div.tooltip:before {
 	left: 30px;
 }
 
-.risk{
+.risk {
 	font-style: italic;
 	font-size: 10px;
 	color: #ccc;
@@ -241,17 +256,17 @@ div.tooltip:before{
 	display: block;
 	margin-bottom: 20px;
 }
-.risk a{
+.risk a {
 	color: #ccc;
 	text-decoration: underline;
 }
-.icon-link{
+.icon-link {
 	margin-right: 2px;
 }
-.icon-link:last-child{
+.icon-link:last-child {
 	margin-right: 0;
 }
-.icon-link svg{
+.icon-link svg {
 	width: 12px;
 	height: auto;
 }

@@ -1,11 +1,53 @@
-# Finance Dashboard
-A WordPress plugin to manage invoices & receipts (only for the Dutch market). This plugin adds an invoice & receipt custom post type and creates a 'finance dashboard' with income per month, quarter and year. You can enter your company details and start adding invoices, simply print them as PDF and send them to your customers. Visiting the dashboard will show you how well your company is doing. 
+# Finance Dashboard #
+A WordPress plugin to manage invoices, receipts and clients (only for the Dutch market). This plugin adds an invoice, receipt and client custom post type and creates a 'finance dashboard' with income per month, quarter and year. You can enter your company details and start adding invoices, simply print them as PDF and send them to your customers. Visiting the dashboard will show you how well your company is doing.
 
 ## Templates ##
-By default, 2 templates are added; One for the single invoice and one for the single receipt. You can add your own templates inside a template folder of your theme. Copy the template files from the plugin to your theme and start editing. Don't forget the print css, for the pdf generation.
+By default, 2 templates are added; One for the invoice and one for the receipt. You can add your own templates inside a template folder of your theme. Copy the template files from the plugin to your theme and start editing. Don't forget the print css for the pdf generation.
 
-## New ##
-Version 1.2 adds a tab to manage clients. Now when making an invoice you can search in your clients list and add the details of selected client, right from your invoice edit page. (Based on the feedback: "When I create more invoices for the same client I don't want to manually add the receivers address everytime I add a new invoice.") 
+## Installation ##
+
+Github Installation (you'll automatically get notified about new updates):
+
+1. Install [Github Updater](https://github.com/afragen/github-updater)
+2. Activate Github Updater
+3. Go to Settings > Github Updater > Install Plugin
+4. Enter the url of this repo (https://github.com/houke/finance-dashboard)
+5. Click 'Install plugin'
+6. Activate the plugin through the 'Plugins' menu in WordPress
+7. Your Finance Dashboard is now ready
+
+Manual Installation (you'll need to check this repo for new updates):
+
+1. Download this plugin
+2. Unzip and upload the folder to your '/wp-content/plugins/' directory
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Your Finance Dashboard is now ready
+
+## Changelog ##
+
+### 2.0 ###
+
+* Complete rewrite/ restructure
+* Add option to automatically increase invoice number
+
+### 1.3 ###
+
+* Changes to back-end layout.
+* Better overview of invoice items.
+* Add support for private transfers (in/out). (These amounts are disregarded from the taxable profits, but affect your companies captial)
+
+### 1.2 ###
+
+* Add client managemant.
+* Connect client to invoices via search interface. This fixes reentering client details in recurring invoices.
+
+### 1.1 ###
+
+* Quickly mark invoices as paid from the overview screen & from the Dashboard.
+
+### 1.0 ###
+
+* First official release
 
 ## Screenshots ##
 
@@ -21,4 +63,4 @@ Version 1.2 adds a tab to manage clients. Now when making an invoice you can sea
 
 ![Template - invoice](https://raw.githubusercontent.com/houke/finance-dashboard/master/screenshots/invoice.png)
 
-*This is built for my girlfriend's company. Used the sprInvoice WordPress plugin as a starting point. Feel free to give it a try, but use at your own risk (always check if the numbers are correct, don't trust blindly on this plugin)*
+_This is built for my girlfriend's company. Used the sprInvoice WordPress plugin as a starting point. Feel free to give it a try, but use at your own risk (always check if the numbers are correct, don't trust blindly on this plugin)_
