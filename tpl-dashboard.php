@@ -187,6 +187,11 @@
                             </a>
                             <ul>
                                 <li>
+                                    <a href="<?php echo $currentPage; ?>jaar/2018/">
+                                        2018
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="<?php echo $currentPage; ?>jaar/2017/">
                                         2017
                                     </a>
