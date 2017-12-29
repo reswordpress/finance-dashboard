@@ -3,7 +3,7 @@
 Plugin Name: Financieel dashboard
 Plugin Script: finance.php
 Description: Financieel dashboard
-Version: 2.0
+Version: 2.1
 Author: Houke de Kwant
 Author URI: http://thearthunters.com
 License: GPLv2 or later
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 //Constants
 $prefix  = 'FD_';
-$version = '2.0';
+$version = '2.1';
 
 //Define variables
 $cpg_constants = array(
