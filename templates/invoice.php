@@ -16,7 +16,7 @@
 <!-- begin markup -->
 
 <?php if ( have_posts() ) {  while ( have_posts() ) { the_post(); ?>
-<button class="o-print-btn" onclick="window.print();">PDF</button>
+<button class="o-print-btn" onclick="document.title = 'Factuur <?php $tk = 'fd_meta_invoice_num';  $tkv = get_post_meta($post->ID, $tk, true ); echo $tkv; ?> - <?php $tk = 'fd_meta_name';  $tkv = get_post_meta($post->ID, $tk, true ); echo $tkv; ?>';window.print();">PDF</button>
 <div id="invoice">
 	<?php $options = get_option('fd_options'); ?>
 
