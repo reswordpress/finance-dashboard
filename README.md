@@ -27,6 +27,10 @@ Manual Installation (you'll need to check this repo for new updates):
 
 ## Changelog
 
+### 2.2
+
+* Update pdf title
+
 ### 2.1
 
 * Add 2018 files
